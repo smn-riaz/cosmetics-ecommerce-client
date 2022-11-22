@@ -5,11 +5,11 @@ import Button from "./Button";
 
 const Features = () => {
   return (
-    <section className="p-8">
-      <div className="flex justify-center items-center">
-        <div className="flex justify-center items-center basis-1/2">
+    <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
+      <div className={`flex flex-col sm:flex-row justify-center items-center space-x-6 space-y-6`}>
+        <div className="flex justify-center items-center basis-1/2 xl:basis-1/3">
           <div className="relative">
-            <img src={features} alt="" className="w-full object-contain" />
+            <img src={features} alt="" className="w-full h-full object-contain" />
             <h1
               className={`font-greatvibes text-secondaryLight text-[100px] inset-0 flex justify-center items-center absolute`}
             >
@@ -18,7 +18,7 @@ const Features = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-end  items-center py-10 px-14 basis-1/2">
+        <div className="flex flex-row justify-end  items-center py-10 basis-1/2 xl:basis-1/3">
           <div className="space-y-4">
             <h3 className={`${styles.headLine1}`}>Features</h3>
             <h1 className={`${styles.headLine2}`}>
@@ -35,7 +35,7 @@ const Features = () => {
             </p>
 
             <div className="flex justify-start">
-              <Button />
+              <Button>Explore More</Button>
             </div>
           </div>
         </div>

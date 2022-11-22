@@ -25,7 +25,7 @@ const TopBanner = () => {
               exercitationem inventore adipisci vitae quia assumenda ad.
               Voluptates at corrupti vel modi labore iusto. Culpa, dicta!
             </p>
-            <Button />
+            <Button>Discover</Button>
           </div>
         </div>
     </section>

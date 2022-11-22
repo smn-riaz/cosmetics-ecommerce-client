@@ -8,14 +8,16 @@ import {
   BsTwitter,
 } from "react-icons/bs";
 import { CiLocationOn } from "react-icons/ci";
+import styles from "../styles/styles";
 
 const Footer = () => {
+ 
   return (
-    <section>
+    <section className="mt-8">
       <div className="bg-[#1E1E1E] p-10">
-        <div className="border border-tertiary p-16 flex flex-col items-center relative">
+        <div className="border border-tertiary p-6 md:p-16 flex flex-col items-center relative">
 
-          <div className="p-4 bg-white w-fit flex justify-center invisible md:visible items-center absolute -top-20">
+          <div className="p-4 bg-white w-fit md:flex justify-center hidden md:visible items-center absolute -top-20">
             <div className="border border-gray-500 flex justify-center items-center p-4">
               <div className="text-center">
                 <h1 className="text-2xl font-medium">@Cosmetics</h1>
@@ -24,8 +26,9 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className=" flex justify-around items-center">
-            <div className="space-y-4 text-white basis-1/3">
+          <div className="md:flex-row md:justify-around flex flex-col justify-start items-start md:items-center">
+
+            <div className="space-y-4 text-white basis-1/3 my-4">
               <h1 className="text-xl">Contact</h1>
               <div className="space-y-2">
                 <p className="flex justify-start items-center space-x-1">
@@ -40,39 +43,41 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="space-y-4 text-white basis-1/3">
-              <div className="space-y-2 text-center">
+            <div className="space-y-4 text-white basis-1/3 my-4">
+              <div className="space-y-2 md:text-center">
                 <h5 className="uppercase font-raleway text-xl">Cosmetic</h5>
                 <p className="">
-                  Popularized through customer relationships with some of the 
+                  Popularized through customer relationships with some of  <br /> the 
                   world’s most recognizable faces, the “brow revolution”.
                 </p>
               </div>
-              <div className="flex justify-center items-center">
-                <p className="rounded-full border-[0.5px] p-[6px] m-1 cursor-pointer hover:bg-tertiary duration-300 border-gray-50">
+              <div className="flex justify-start md:justify-center items-center">
+                <p className={`${styles.socialIcon}`}>
                   <BsTwitter />
                 </p>
-                <p className="rounded-full border-[0.5px] p-[6px] m-1 cursor-pointer hover:bg-tertiary duration-300 border-gray-50">
+                <p className={`${styles.socialIcon}`}>
                   <BsFacebook />
                 </p>
-                <p className="rounded-full border-[0.5px] p-[6px] m-1 cursor-pointer hover:bg-tertiary duration-300 border-gray-50">
+                <p className={`${styles.socialIcon}`}>
                   <BsInstagram />
                 </p>
-                <p className="rounded-full border-[0.5px] p-[6px] m-1 cursor-pointer hover:bg-tertiary duration-300 border-gray-50">
+                <p className={`${styles.socialIcon}`}>
                   <BsLinkedin />
                 </p>
               </div>
             </div>
 
-            <div className="space-y-4 text-right text-white basis-1/3">
+            <div className="space-y-4 md:text-right text-left text-white basis-1/3 my-4">
               <h1 className="text-xl">Useful Links</h1>
-              <div className="space-y-2 text-right">
+              <div className="space-y-2">
                 <p>Eyeshadow Collection</p>
                 <p>How Clean Make Up Brushes</p>
                 <p>The Right Foundation</p>
               </div>
             </div>
+
           </div>
+
         </div>
       </div>
     </section>

@@ -1,10 +1,10 @@
 import React from "react";
 
-const Button = () => {
+const Button = ({children}) => {
   return (
     <section>
-      <button className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 hover:text-primary duration-500 border-black uppercase">
-        Read More
+      <button className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase">
+        {children}
       </button>
     </section>
   );

@@ -21,7 +21,7 @@ const LandingPage = () => {
           <OurProducts />
         </section>
 
-        <section>
+         <section>
           <BestSellerProduct />
         </section>
 
@@ -34,14 +34,14 @@ const LandingPage = () => {
           <AboutUs />
         </section>
 
-        <section>
+       <section>
           <ProductQuality />
         </section>
 
-        <section>
+         <section>
           <ProductTypes />
         </section>
-
+ 
         <section>
           <Founder />
         </section>
@@ -51,7 +51,7 @@ const LandingPage = () => {
         </section>
 
 
-        <section>
+         <section>
           <FindBeauty />
         </section>
 
@@ -59,16 +59,16 @@ const LandingPage = () => {
           <NewProducts />
         </section>
 
-        <section>
+       {/* <section>
           <Testimonials/>
-        </section>
+        </section> */}
 
         <section>
           <Blog />
         </section>
 
 
-        <section>
+         <section>
           <Footer />
         </section>
         

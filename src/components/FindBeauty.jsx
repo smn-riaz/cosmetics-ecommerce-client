@@ -2,24 +2,17 @@ import React from "react";
 import styles from "../styles/styles";
 import findbeauty from "../assets/findbeauty.jpg";
 import Button from "./Button";
+import ButtonReverse from "./ButtonReverse";
 
 const FindBeauty = () => {
   return (
-    <section className="p-8">
-      <div
-        className="flex justify-start items-center bg-[#2A2A2A] text-white"
-        // style={{
-        //         background: `url(${findbeauty})`,
-        //         backgroundPosition: "left",
-        //         backgroundSize: "contain",
-        //         backgroundRepeat: "no-repeat",
-        //       }}
-      >
-        <div className="sm:visible invisible">
+    <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
+      <div className="flex justify-start items-center bg-[#2A2A2A] text-white px-4 py-16">
+        <div className="sm:visible hidden h-full">
           <img src={findbeauty} alt="" className="w-full h-full" />
         </div>
 
-        <div className="flex justify-around items-center flex-1">
+        <div className="sm:flex justify-around items-center flex-1 space-y-6">
           <div>
             <h1 className={`${styles.headLine2}`}>Find Your Beauty</h1>
             <p className={`${styles.detailText1}`}>
@@ -28,9 +21,7 @@ const FindBeauty = () => {
             </p>
           </div>
           <div>
-            <button className="px-8 py-4 uppercase bg-white text-black ">
-              see more
-            </button>
+           <ButtonReverse>View More</ButtonReverse>
           </div>
         </div>
       </div>
