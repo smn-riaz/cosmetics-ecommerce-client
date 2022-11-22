@@ -9,7 +9,7 @@ const LandingPage = () => {
         </section>
 
         <section>
-          {/* <Navbar /> */}
+          <Navbar />
         </section>
 
         <section>
