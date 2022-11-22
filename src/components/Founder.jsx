@@ -10,13 +10,7 @@ const Founder = () => {
     <section>
       <div className="flex justify-center items-center">
 
-        <div className="flex flex-row justify-end  items-center py-10 px-14 basis-1/2" 
-        // style={{
-        //       background: `url(${founder2})`,
-        //       backgroundPosition: "center",
-        //       backgroundSize: "cover",
-        //       backgroundRepeat: "no-repeat",
-        //     }}
+        <div className="flex flex-row justify-end  items-center py-10 px-14 basis-1/2"
             >
           <div className="space-y-4">
             <h3 className={`${styles.headLine1}`}>Features</h3>
@@ -53,7 +47,7 @@ const Founder = () => {
             <div className="relative" 
             >
               <img src={founder1} alt="" className="w-full object-contain"/>
-              <h1 className={`${styles.headLine1} text-[200px] inset-0 flex justify-center items-center absolute`}>Color</h1>
+              <h1 className={`font-greatvibes text-secondaryLight text-[100px]  inset-0 flex justify-center items-center absolute`}>Color</h1>
             </div>
         </div>
       </div>

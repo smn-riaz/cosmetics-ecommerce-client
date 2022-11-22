@@ -6,10 +6,10 @@ import ourpr3 from "../assets/ourpr3.jpg";
 const OurProducts = () => {
   return (
     <section className="md:flex-row flex-col flex justify-center items-center gap-20">
-      <div className="min-w-[300px] min-h-[300px] sm:basis-1/2 md:basis-1/3 relative">
-        <div className="w-[90%] h-[90%] absolute top-0 left-0 border-2 border-secondary"></div>
+      <div className="w-[300px] h-[300px] sm:basis-1/2 md:basis-1/3 relative">
+        <div className="w-[90%] h-[90%] absolute top-0 left-0 border-[1px] border-black z-10"></div>
         <div
-          className="w-[90%] h-[90%] absolute bottom-0 right-0 flex justify-center items-center hover:opacity-80"
+          className="w-[90%] h-[90%] absolute bottom-0 z-0 right-0 flex justify-center items-center hover:opacity-80"
           style={{
             background: `url(${ourpr1})`,
             backgroundPosition: "center",

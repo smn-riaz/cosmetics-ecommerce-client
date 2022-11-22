@@ -1,5 +1,5 @@
 import React from 'react'
-import { AboutUs, BestSellerProduct, Blog, Brands, DicountText, Founder, Navbar, OurProducts, ProductQuality, TopBanner } from '../../components/Index'
+import { AboutUs, BestSellerProduct, Blog, Brands, DicountText, Features, FindBeauty, Footer, Founder, Navbar, NewProducts, OurProducts, ProductQuality, ProductTypes, Testimonials, TopBanner } from '../../components/Index'
 
 const LandingPage = () => {
   return (
@@ -39,9 +39,39 @@ const LandingPage = () => {
         </section>
 
         <section>
+          <ProductTypes />
+        </section>
+
+        <section>
           <Founder />
         </section>
 
+        <section>
+          <Features />
+        </section>
+
+
+        <section>
+          <FindBeauty />
+        </section>
+
+        <section>
+          <NewProducts />
+        </section>
+
+        <section>
+          <Testimonials/>
+        </section>
+
+        <section>
+          <Blog />
+        </section>
+
+
+        <section>
+          <Footer />
+        </section>
+        
     </main>
   )
 }

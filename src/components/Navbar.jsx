@@ -23,7 +23,7 @@ const Navbar = () => {
                 size={10}
               />
             </div>
-            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 mt-2 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-400">
+            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-400">
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Cosmetic Shop</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Perfume Shop</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Beauty Products</li>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 size={10}
               />
             </div>
-            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 mt-2 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-200">
+            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-200">
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">About Us</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Services</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Delivery</li>
@@ -58,7 +58,7 @@ const Navbar = () => {
                 size={10}
               />
             </div>
-            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 mt-2 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-200">
+            <ul className="absolute bg-gray-800 w-[200px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-200">
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Concealer</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Body Care</li>
               <li className="text-white hover:text-secondaryLight duration-300 my-3 hover:ml-3 hover:bg-gray-600 p-2">Makeup</li>
