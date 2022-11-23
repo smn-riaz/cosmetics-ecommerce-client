@@ -9,15 +9,16 @@ const Navbar = () => {
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
       <div className="flex justify-start xl:justify-center items-center flex-1">
-        <img
+        {/* <img
           src="https://g2h4v2c9.stackpathcdn.com/themes/cosmecos-new/wp-content/uploads/2021/03/logo_black.png"
           className="h-[14px]"
           alt="logo"
-        />
+        /> */}
+        <h3 className="text-4xl xl:text-6xl font-semibold font-greatvibes text-secondary">Cosmetics</h3>
       </div>
 
       <div className="sm:flex justify-center items-center hidden">
-        <ul className="flex flex-row justify-between items-center gap-x-6 font-raleway xl:text-3xl ">
+        <ul className="flex flex-row justify-between items-center gap-x-6 font-raleway xl:text-3xl cursor-pointer">
           <li className="relative group">
             <div className="flex uppercase  xl:text-3xl text-sm flex-row justify-center font-medium items-center gap-1 top-0">
               Home
@@ -99,16 +100,16 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <div className="sm:flex justify-center items-center flex-1 hidden xl:text-3xl">
-        <ul className="flex justify-center items-center gap-6">
+      <div className="sm:flex justify-center items-center flex-1 hidden">
+        <ul className="flex justify-center items-center gap-6 cursor-pointer">
           <li className="flex justify-center items-center">
-            <AiOutlineHeart size={22} />
+            <AiOutlineHeart size={22}/>
           </li>
           <li className="flex justify-center items-center">
-            <BsCartCheck size={22} />
+            <BsCartCheck size={22}/>
           </li>
           <li className="flex justify-center items-center">
-            <BsSearch size={22} />
+            <BsSearch size={22}/>
           </li>
         </ul>
       </div>

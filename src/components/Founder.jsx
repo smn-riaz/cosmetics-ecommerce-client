@@ -27,7 +27,7 @@ const Founder = () => {
             <h1 className={`${styles.headLine2}`}>
               Eyeshadow <br className="sm:visible invisible" /> Revolution
             </h1>
-            <p className="">
+            <p className="xl:text-3xl">
               Our eyes are intrinsically trained to spot divine proportion and
               immediately associate it with beauty and harmony.
             </p>
@@ -37,7 +37,7 @@ const Founder = () => {
               the middle of the iris.
             </p>
 
-            <div className="flex md:justify-between justify-start items-center w-full md:w-[70%]">
+            <div className="flex md:justify-between justify-start space-x-3 items-center w-full md:w-[70%]">
               <div>
                 <img src={founder} alt="" className="rounded-full" />
               </div>

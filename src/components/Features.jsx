@@ -24,7 +24,7 @@ const Features = () => {
             <h1 className={`${styles.headLine2}`}>
               Eyeshadow <br className="sm:visible invisible" /> Revolution
             </h1>
-            <p className="">
+            <p className="xl:text-3xl">
               Our eyes are intrinsically trained to spot divine proportion and
               immediately associate it with beauty and harmony.
             </p>

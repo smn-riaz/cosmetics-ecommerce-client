@@ -1,7 +1,7 @@
  const styles = {
-    headLine1:"text-4xl font-greatvibes text-secondary",
-    headLine2:"text-4xl font-raleway font-light uppercase",
-    detailText1:" font-nunito font-medium text-tertiary",
+    headLine1:"text-4xl xl:text-8xl font-greatvibes text-secondary",
+    headLine2:"text-4xl xl:text-6xl font-raleway font-light uppercase",
+    detailText1:"xl:text-2xl font-nunito font-medium text-tertiary",
     section: `flex md:flex-row flex-col sm:py-16 py-6`,
     flexCenter: "flex justify-center items-center",
     flexStart: "flex justify-center items-start",
