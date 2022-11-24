@@ -114,6 +114,7 @@ const Navbar = () => {
         </ul>
       </div>
 
+
       <div className="sm:hidden relative">
         {!toggleMenu && (
           <GiHamburgerMenu
@@ -123,7 +124,7 @@ const Navbar = () => {
           />
         )}
         {toggleMenu && (
-          <div className="fixed top-0 right-0 w-[100%] h-[100%] bg-secondaryLight flex-col flex justify-start items-center transition duration-700 z-[100] py-10">
+          <div className="fixed top-0 right-0 overflow-y-hidden w-[100%] h-[100%] bg-secondaryLight flex-col flex justify-start items-center transition duration-700 z-[100] py-10">
             <TbArrowsCross
               fontSize={27}
               className="m-2 "
