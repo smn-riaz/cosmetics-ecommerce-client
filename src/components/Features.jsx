@@ -35,7 +35,7 @@ const Features = () => {
             </p>
 
             <div className="flex justify-start">
-              <Button>Explore More</Button>
+            <Button title="Explore More" goLink="/product"/>
             </div>
           </div>
         </div>

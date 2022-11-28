@@ -3,18 +3,19 @@ import { BsCartCheck, BsChevronDown, BsSearch } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbArrowsCross } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
       <div className="flex justify-start xl:justify-center items-center flex-1">
-        {/* <img
-          src="https://g2h4v2c9.stackpathcdn.com/themes/cosmecos-new/wp-content/uploads/2021/03/logo_black.png"
-          className="h-[14px]"
-          alt="logo"
-        /> */}
-        <h3 className="text-4xl xl:text-6xl font-semibold font-greatvibes text-secondary">Cosmetics</h3>
+        <Link to="/">
+          {" "}
+          <h3 className="text-4xl xl:text-6xl font-semibold font-greatvibes text-secondary">
+            Cosmetics
+          </h3>
+        </Link>
       </div>
 
       <div className="sm:flex justify-center items-center hidden">
@@ -22,22 +23,7 @@ const Navbar = () => {
           <li className="relative group">
             <div className="flex uppercase  xl:text-3xl text-sm flex-row justify-center font-medium items-center gap-1 top-0">
               Home
-              <BsChevronDown
-                className="group-hover:rotate-180 duration-500"
-                size={10}
-              />
             </div>
-            <ul className="absolute bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-400">
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
-                Cosmetic Shop
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
-                Perfume Shop
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
-                Beauty Products
-              </li>
-            </ul>
           </li>
 
           <li className="relative group">
@@ -78,19 +64,19 @@ const Navbar = () => {
                 size={10}
               />
             </div>
-            <ul className="absolute bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+            <ul className="absolute flex flex-col bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
+              <Link to="/porduct/prefectconcealer" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Concealer
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              </Link>
+              <Link to="/porduct/bodycare" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Body Care
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              </Link>
+              <Link to="/porduct/makeupequipment" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Makeup
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              </Link>
+              <Link to="awesomesoap" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Soap
-              </li>
+              </Link>
             </ul>
           </li>
 
@@ -103,17 +89,16 @@ const Navbar = () => {
       <div className="sm:flex justify-center items-center flex-1 hidden">
         <ul className="flex justify-center items-center gap-6 cursor-pointer">
           <li className="flex justify-center items-center">
-            <AiOutlineHeart size={22}/>
+            <AiOutlineHeart size={22} />
           </li>
           <li className="flex justify-center items-center">
-            <BsCartCheck size={22}/>
+            <BsCartCheck size={22} />
           </li>
           <li className="flex justify-center items-center">
-            <BsSearch size={22}/>
+            <BsSearch size={22} />
           </li>
         </ul>
       </div>
-
 
       <div className="sm:hidden relative">
         {!toggleMenu && (
@@ -131,28 +116,13 @@ const Navbar = () => {
               onClick={() => setToggleMenu(false)}
             />
             <ul className="text-left">
-              <li className="relative group my-8">
+              <li className="relative group my-12">
                 <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                   Home
-                  <BsChevronDown
-                    className="group-hover:rotate-180 duration-500"
-                    size={10}
-                  />
                 </div>
-                <ul className="absolute z-10 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-400">
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Cosmetic Shop
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Perfume Shop
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Beauty Products
-                  </li>
-                </ul>
               </li>
 
-              <li className="relative group my-8">
+              <li className="relative group my-12">
                 <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                   Pages
                   <BsChevronDown
@@ -160,7 +130,7 @@ const Navbar = () => {
                     size={10}
                   />
                 </div>
-                <ul className="absolute z-10 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
+                <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
                   <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                     About Us
                   </li>
@@ -182,7 +152,7 @@ const Navbar = () => {
                 </ul>
               </li>
 
-              <li className="relative group my-8">
+              <li className="relative group my-12">
                 <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                   Products
                   <BsChevronDown
@@ -190,7 +160,7 @@ const Navbar = () => {
                     size={10}
                   />
                 </div>
-                <ul className="absolute z-10 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
+                <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
                   <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                     Concealer
                   </li>

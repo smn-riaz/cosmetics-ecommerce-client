@@ -59,7 +59,7 @@ const AboutUs = () => {
             </div>
 
             <div>
-              <Button>Explore More</Button>
+            <Button title="Explore More" goLink="/product"/>
             </div>
           </div>
         </div>

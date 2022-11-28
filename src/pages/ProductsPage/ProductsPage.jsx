@@ -1,16 +1,37 @@
-import React from "react";
-import styles from "../styles/styles";
+import React, { useEffect, useState } from "react";
 import { AiFillStar } from "react-icons/ai";
-import Button from "./Button";
-import { data } from "../data";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigation } from "react-router-dom";
+import { data } from "../../data";
+import styles from "../../styles/styles";
 
-const BestSellerProduct = () => {
+const ProductsPage = () => {
+  
+  const navigation = useLocation().pathname.split("/")
+  const productType = navigation[navigation.length-1]
+  const productsData = data.filter((d) => d.producttype === productType)
+
+  const [pageHeadline, setPageHeadline] = useState("")
+
+  useEffect(()=> {
+    if(productType==="awesomesoap") {
+      setPageHeadline("Awesome Soap")
+    }
+
+    else if(productType==="prefectconcealer") {
+      setPageHeadline("Prefect Concealer")
+    }
+    else if(productType==="mackupequipment") {
+      setPageHeadline("Mackup Equipment")
+    }
+    else if(productType==="bodycare") {
+      setPageHeadline("Body Care")
+    }
+  },[productType])
+
   return (
     <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
       <div className="text-center space-y-4 py-8">
-        <h3 className={`${styles.headLine1}`}>Best products</h3>
-        <h1 className={`${styles.headLine2}`}>Best selling products</h1>
+        <h3 className={`${styles.headLine1}`}>{pageHeadline}</h3>
         <h4 className={`${styles.detailText1} text-lg`}>
           The stylish and organized cosmetic products
         </h4>
@@ -19,7 +40,7 @@ const BestSellerProduct = () => {
       <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
-        {data.map((product) => (
+        {productsData.map((product) => (
           <Link to={`/product/${product.producttype}/${product.id}`}>
             <div className="mx-8 my-12">
               <div className="relative   bg-divBg group">
@@ -56,12 +77,8 @@ const BestSellerProduct = () => {
           </Link>
         ))}
       </div>
-
-      <div className="flex justify-center items-center py-2">
-      <Button title="Explore More" goLink="/product"/>
-      </div>
     </section>
   );
 };
 
-export default BestSellerProduct;
+export default ProductsPage;

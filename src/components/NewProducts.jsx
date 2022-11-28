@@ -82,7 +82,7 @@ const NewProducts = () => {
       </div>
 
       <div className="flex justify-center py-8">
-        <Button>Explore More</Button>
+      <Button title="Explore More" goLink="/product"/>
       </div>
     </section>
   );

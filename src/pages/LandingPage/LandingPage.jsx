@@ -5,14 +5,6 @@ const LandingPage = () => {
   return (
     <main className='bg-primary'>
         <section>
-            <DicountText />
-        </section>
-
-        <section>
-          <Navbar />
-        </section>
-
-        <section>
           <TopBanner />
         </section>
 

@@ -25,7 +25,7 @@ const TopBanner = () => {
               exercitationem inventore adipisci vitae quia assumenda ad.
               Voluptates at corrupti vel modi labore iusto. Culpa, dicta!
             </p>
-            <Button>Discover</Button>
+            <Button title="Discover" goLink="/product"/>
           </div>
         </div>
     </section>
