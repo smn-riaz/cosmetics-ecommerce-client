@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DicountText from "./components/DicountText";
 import Navbar from "./components/Navbar";
+import CartPage from "./pages/CartPage/CartPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
@@ -17,6 +18,7 @@ function App() {
           path="/product/:producttype/:product"
           element={<ProductPage />}
         />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </BrowserRouter>
   );

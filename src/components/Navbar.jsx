@@ -4,9 +4,11 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbArrowsCross } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const totalItems = useSelector(state => state.cart.totalQuantity)
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
       <div className="flex justify-start xl:justify-center items-center flex-1">
@@ -22,7 +24,7 @@ const Navbar = () => {
         <ul className="flex flex-row justify-between items-center gap-x-6 font-raleway xl:text-3xl cursor-pointer">
           <li className="relative group">
             <div className="flex uppercase  xl:text-3xl text-sm flex-row justify-center font-medium items-center gap-1 top-0">
-              Home
+              <Link to="/">Home</Link>
             </div>
           </li>
 
@@ -65,16 +67,16 @@ const Navbar = () => {
               />
             </div>
             <ul className="absolute flex flex-col bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-              <Link to="/porduct/prefectconcealer" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              <Link to="/product/prefectconcealer" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Concealer
               </Link>
-              <Link to="/porduct/bodycare" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              <Link to="/product/bodycare" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Body Care
               </Link>
-              <Link to="/porduct/makeupequipment" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              <Link to="/product/mackupequipment" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Makeup
               </Link>
-              <Link to="awesomesoap" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
+              <Link to="/product/awesomesoap" className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-3 hover:bg-gray-600 p-2">
                 Soap
               </Link>
             </ul>
@@ -91,11 +93,11 @@ const Navbar = () => {
           <li className="flex justify-center items-center">
             <AiOutlineHeart size={22} />
           </li>
+          <Link to="/cart" className="flex justify-center items-center">
+            <BsCartCheck size={22} />{totalItems>0 && <sup className="text-lg font-bold font-raleway text-secondary">{totalItems}</sup>}
+          </Link>
           <li className="flex justify-center items-center">
-            <BsCartCheck size={22} />
-          </li>
-          <li className="flex justify-center items-center">
-            <BsSearch size={22} />
+            <BsSearch size={22} /> 
           </li>
         </ul>
       </div>
