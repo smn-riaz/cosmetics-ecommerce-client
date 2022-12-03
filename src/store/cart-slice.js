@@ -30,6 +30,16 @@ const cartSlice = createSlice({
           
             state.totalQuantity = state.items.length
         },
+        deleteItemFromCart(state, action) {
+            const id = action.payload;
+            // const existingItem = state.items.find(item => item.id === id)
+            
+            
+                state.items = state.items.filter(item => item.id !== id);
+
+          
+            state.totalQuantity = state.items.length
+        },
     }
 })
 

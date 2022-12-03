@@ -24,9 +24,6 @@ const ProductPage = () => {
     producttype,
   } = productData;
 
-  const [quantity, setQuantity] = useState(1);
-  let totalPrice = quantity * price;
-
   const handleAddToCart = () => {
     dispatch(
       cartActions.addItemToCart({
@@ -39,8 +36,6 @@ const ProductPage = () => {
         price,
         id,
         producttype,
-        totalPrice,
-        quantity,
       })
     );
 
@@ -94,40 +89,6 @@ const ProductPage = () => {
             </div>
 
             <div className="ss:flex items-center justify-between">
-              <div className="flex justify-start space-x-8 flex-1">
-                <div className="flex justify-between">
-                  <button
-                    className="cursor-pointer mx-3 bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
-                    onClick={() => {
-                      if (quantity > 1) {
-                        setQuantity(quantity - 1);
-                      }
-                    }}
-                  >
-                    <AiOutlineMinus size={18} />
-                  </button>
-                  <button className="bg-secondary w-[40px] h-[40px] font-semibold text-lg rounded-full">
-                    {quantity}
-                  </button>
-                  <button
-                    className="cursor-pointer mx-3 bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
-                    onClick={() => {
-                      if (quantity < instock) {
-                        setQuantity(quantity + 1);
-                      }
-                    }}
-                  >
-                    <AiOutlinePlus />
-                  </button>
-                </div>
-
-                <div>
-                  <p className="text-lg font-semibold font-nunito">
-                    <span className="">${totalPrice}</span>
-                  </p>
-                </div>
-              </div>
-
               <div className="p-2">
                 <button
                   className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6"

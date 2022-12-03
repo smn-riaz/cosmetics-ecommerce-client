@@ -1,5 +1,5 @@
-import React from "react";
-import { AiFillDelete } from "react-icons/ai";
+import React, { useState } from "react";
+import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { FaShippingFast } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
@@ -12,10 +12,11 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   const handleDeleteFromCart = (id) => {
-    dispatch(cartActions.removeItemFromCart(id));
+    dispatch(cartActions.deleteItemFromCart(id));
   };
 
-  // className={`${styles.paddingX} ${styles.paddingY} w-full`}
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <section>
       <Navbar />
@@ -45,13 +46,54 @@ const CartPage = () => {
                       <span className="font-semibold">${cart.price}</span>
                     </p>
                     <p className="text-lg font-nunito">
+                      Instock:{" "}
+                      <span className="font-semibold">{cart.instock}</span>
+                    </p>
+
+
+                    <div className="flex justify-start flex-1 py-4">
+                      <div className="flex justify-between space-x-3">
+                        <button
+                          className="cursor-pointer bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
+                          onClick={() => {
+                            if (quantity > 0) {
+                              setQuantity(quantity - 1);
+                            }
+                          }}
+                        >
+                          <AiOutlineMinus size={18} />
+                        </button>
+                        <button className="bg-secondary w-[40px] h-[40px] font-semibold text-lg rounded-full">
+                          {quantity}
+                        </button>
+                        <button
+                          className="cursor-pointer  bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
+                          onClick={() => {
+                            if (quantity < cart.instock) {
+                              setQuantity(quantity + 1);
+                            }
+                          }}
+                        >
+                          <AiOutlinePlus />
+                        </button>
+                      </div>
+
+                      <div>
+                        <p className="text-lg font-semibold font-nunito">
+                          {/* <span className="">${totalPrice}</span> */}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-lg font-nunito">
                       Quantity:{" "}
-                      <span className="font-semibold">{cart.quantity}</span>
+                      <span className="font-semibold">{quantity}</span>
                     </p>
                     <p className="text-lg font-nunito">
                       Total Price:{" "}
-                      <span className="font-semibold">${cart.totalPrice}</span>
+                      <span className="font-semibold">${quantity*cart.price}</span>
                     </p>
+
                     <div className="flex justify-between">
                       <p className="h-[35px]  w-[35px] rounded-full flex justify-center items-center bg-secondary cursor-pointer hover:bg-slate-400 duration-300">
                         <FaShippingFast size={20} />
