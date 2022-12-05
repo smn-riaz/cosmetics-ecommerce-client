@@ -27,6 +27,7 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     dispatch(
       cartActions.addItemToCart({
+        id,
         title,
         image,
         description,
@@ -34,7 +35,7 @@ const ProductPage = () => {
         category,
         tags,
         price,
-        id,
+        quantity:1,
         producttype,
       })
     );

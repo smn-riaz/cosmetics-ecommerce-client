@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { MdDeleteForever } from "react-icons/md";
 import { FaShippingFast } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { cartActions } from "../../store/cart-slice";
 import styles from "../../styles/styles";
+import Button from "../../components/Button";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -15,111 +17,157 @@ const CartPage = () => {
     dispatch(cartActions.deleteItemFromCart(id));
   };
 
-  const [quantity, setQuantity] = useState(1);
-
   return (
-    <section>
-      <Navbar />
-      <main>
-        <div className="flex justify-between items-start md:p-12 space-x-10">
+    <main className="">
+      {
+        cartItems.length>0?
+        <section className="relative z-20">
+        <div className="flex justify-between items-start md:p-8 space-x-10 relative ">
           <div className="w-full">
-            {cartItems.map((cart) => (
-              <div className="flex justify-start items-center  bg-secondaryLight duration-500 rounded-xl w-full m-2">
-                <div className="flex justify-start items-center p-2">
-                  <img
-                    src={cart.image}
-                    alt=""
-                    className="rounded-full h-[200px] w-[200px]"
-                  />
-                </div>
-
-                <div className="space-y-4 p-4">
-                  <h3 className="text-xl font-semibold text-black uppercase">
-                    {cart.title}
-                  </h3>
-                  <div className="space-y-2">
-                    <h5 className="text-lg font-nunito">
-                      ID: <span className="font-semibold">{cart.id}</span>
-                    </h5>
-                    <p className="text-lg font-nunito">
-                      Price:{" "}
-                      <span className="font-semibold">${cart.price}</span>
-                    </p>
-                    <p className="text-lg font-nunito">
-                      Instock:{" "}
-                      <span className="font-semibold">{cart.instock}</span>
-                    </p>
-
-
-                    <div className="flex justify-start flex-1 py-4">
-                      <div className="flex justify-between space-x-3">
-                        <button
-                          className="cursor-pointer bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
-                          onClick={() => {
-                            if (quantity > 0) {
-                              setQuantity(quantity - 1);
-                            }
-                          }}
-                        >
-                          <AiOutlineMinus size={18} />
-                        </button>
-                        <button className="bg-secondary w-[40px] h-[40px] font-semibold text-lg rounded-full">
-                          {quantity}
-                        </button>
-                        <button
-                          className="cursor-pointer  bg-white fs-4 fw-bold border-[0.3px] border-black w-[40px] h-[40px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
-                          onClick={() => {
-                            if (quantity < cart.instock) {
-                              setQuantity(quantity + 1);
-                            }
-                          }}
-                        >
-                          <AiOutlinePlus />
-                        </button>
-                      </div>
-
-                      <div>
-                        <p className="text-lg font-semibold font-nunito">
-                          {/* <span className="">${totalPrice}</span> */}
-                        </p>
-                      </div>
-                    </div>
-
-                    <p className="text-lg font-nunito">
-                      Quantity:{" "}
-                      <span className="font-semibold">{quantity}</span>
-                    </p>
-                    <p className="text-lg font-nunito">
-                      Total Price:{" "}
-                      <span className="font-semibold">${quantity*cart.price}</span>
-                    </p>
-
-                    <div className="flex justify-between">
-                      <p className="h-[35px]  w-[35px] rounded-full flex justify-center items-center bg-secondary cursor-pointer hover:bg-slate-400 duration-300">
-                        <FaShippingFast size={20} />
-                      </p>
-                      <p
-                        className="h-[35px]  w-[35px] rounded-full flex justify-center items-center bg-secondary cursor-pointer hover:bg-slate-400 duration-300"
-                        onClick={() => handleDeleteFromCart(cart.id)}
-                      >
-                        <AiFillDelete size={20} />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <table className="w-full border-collapse">
+              <thead className="text-left">
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>Product</th>
+                  <th>Id</th>
+                  <th>Instock</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((cart, index) => {
+                  const {
+                    image,
+                    title,
+                    id,
+                    price,
+                    instock,
+                    totalPrice,
+                    quantity,
+                  } = cart;
+                  return (
+                    <tr className="duration-500 h-[140px] m-6 border-b-[1px] border-secondaryLight last:border-0">
+                      <td>
+                        <div>
+                          <p
+                            className="h-[25px]  w-[25px] rounded-full flex justify-center items-center  cursor-pointer hover:bg-gray-500 duration-300"
+                            onClick={() => handleDeleteFromCart(cart.id)}
+                          >
+                            <MdDeleteForever size={20} />
+                          </p>
+                        </div>
+                      </td>
+                      <td className="">
+                        <div className="">
+                          <img
+                            src={image}
+                            alt=""
+                            className="rounded-full h-[100px] w-[100px]"
+                          />
+                        </div>
+                      </td>
+                      <td className="">
+                        <div className="">
+                          <h3 className="text-md text-black uppercase hover:text-secondary duration-500">
+                            {title}
+                          </h3>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="">
+                          {id.length > 11 ? (
+                            <h5
+                              className="text-md font-nunito cursor-pointer"
+                              title={id}
+                            >
+                              {id.slice(0, 10)}..
+                            </h5>
+                          ) : (
+                            <h5 className="text-md font-nunito">{id}</h5>
+                          )}
+                        </div>
+                      </td>
+                      <td>
+                        <p className="text-md font-nunito">{instock}</p>
+                      </td>
+                      <td>
+                        <div>
+                          <p className="text-md font-nunito">
+                            <span className="">${price}</span>
+                          </p>
+                        </div>
+                      </td>
+                      <td>
+                        <div className="flex justify-start flex-1 py-4">
+                          <div className="flex justify-around items-center space-x-3">
+                            <button
+                              className="cursor-pointer bg-white fs-4 fw-bold border-[0.3px] border-black w-[30px] h-[30px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
+                              onClick={() => {
+                                if (quantity > 0) {
+                                }
+                              }}
+                            >
+                              <AiOutlineMinus size={18} />
+                            </button>
+                            <button className="bg-secondary w-[40px] h-[40px]  text-md rounded-full">
+                              {quantity}
+                            </button>
+                            <button
+                              className="cursor-pointer  bg-white fs-4 fw-bold border-[0.3px] border-black w-[30px] h-[30px] flex justify-center items-center hover:bg-black hover:text-white duration-500 font-bold"
+                              onClick={() => {
+                                if (quantity < cart.instock) {
+                                }
+                              }}
+                            >
+                              <AiOutlinePlus />
+                            </button>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div>
+                          <p className="text-md font-nunito">
+                            <span className="">${quantity * cart.price}</span>
+                          </p>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
 
-          <div className="w-full flex justify-end">
-            <div>
-              <h1 className="uppercase text-xl">Cart Summary</h1>
-              <h3>Total Cost: </h3>
+          <div className="flex justify-start min-w-fit py-8">
+            <div className="font-nunito p-0 space-y-4">
+              <div>
+                <h1 className="uppercase text-xl font-raleway font-medium">
+                  Cart Summary
+                </h1>
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg">Total Cost: </h3>
+                <h3 className="text-lg">Shipping Cost: $30</h3>
+                <h3 className="text-lg">
+                  Total: <span className="font-semibold">$30</span>
+                </h3>
+              </div>
+              <div>
+                <Button title="Proceed to checkout" goLink="/checkout" />
+              </div>
             </div>
           </div>
         </div>
-      </main>
-    </section>
+      </section>
+      :
+      <div className="flex justify-center items-center py-8">
+        <h2 className="font-nunito text-4xl">No Item is Carted</h2>
+      </div>
+      }
+    </main>
   );
 };
 

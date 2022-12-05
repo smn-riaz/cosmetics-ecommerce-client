@@ -1,17 +1,9 @@
 import React from 'react'
-import { AboutUs, BestSellerProduct, Blog, Brands, DicountText, Features, FindBeauty, Footer, Founder, Navbar, NewProducts, OurProducts, ProductQuality, ProductTypes, Testimonials, TopBanner } from '../../components/Index'
+import { AboutUs, BestSellerProduct, Blog, Brands, Features, FindBeauty, Footer, Founder, Navbar, NewProducts, OurProducts, ProductQuality, ProductTypes, Testimonials, TopBanner } from '../../components/Index'
 
 const LandingPage = () => {
   return (
     <main className='bg-primary'>
-        <section>
-            <DicountText />
-        </section>
-
-        <section>
-          <Navbar />
-        </section>
-
         <section>
           <TopBanner />
         </section>
