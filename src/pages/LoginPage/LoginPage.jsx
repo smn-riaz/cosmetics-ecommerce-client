@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ProductsContext } from "../../App";
 import Button from "../../components/Button";
 import styles from "../../styles/styles";
 
@@ -7,6 +9,8 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [isUserAvailableMessage, setIsUserAvailableMessage] = useState(false);
+
+  const {setUser} = useContext(ProductsContext)
 
   const navigate = useNavigate();
 
@@ -36,13 +40,30 @@ const LoginPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result > 0) {
-          
+
+
+          fetch("http://localhost:5000/customer/signin", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              setUser(data.result)
+              navigate('/profile', {replace: true})
+            });
+
+
         } else {
+
           setIsUserAvailableMessage(true);
           setTimeout(() => {
             setIsUserAvailableMessage(false);
             navigate("/register", { replace: true });
           }, 10000);
+
         }
       });
   };
@@ -52,7 +73,12 @@ const LoginPage = () => {
       className={`flex justify-center items-center ${styles.paddingX} ${styles.paddingY}`}
     >
       <section className="p-8 border-secondaryLight border-2">
-      {isUserAvailableMessage && <p className="text-red-700 text-center font-nunito font-semibold">This Email is not found<br /> Please, Register !</p>}
+        {isUserAvailableMessage && (
+          <p className="text-red-700 text-center font-nunito font-semibold">
+            This Email is not found
+            <br /> Please, Register !
+          </p>
+        )}
         <h2 className="text-center text-3xl py-2 font-raleway">Sign in</h2>
         <div className="w-[300px] space-y-4">
           <form onSubmit={handleSubmit}>
@@ -71,18 +97,18 @@ const LoginPage = () => {
               </label>
             </p>
             <p>
-              <label
-                htmlFor="password"
-              >
-               <span className="text-md font-semibold font-nunito">Password :</span>
+              <label htmlFor="password">
+                <span className="text-md font-semibold font-nunito">
+                  Password :
+                </span>
                 <input
-                ref={passwordRef}
+                  ref={passwordRef}
                   type={showPassword ? "text" : "password"}
                   name=""
                   id="password"
                   className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
                   minLength={4}
-                  maxLength={16}
+                  maxLength={20}
                   required
                 />{" "}
               </label>

@@ -43,9 +43,16 @@ function App() {
           />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          {
+            !user.email && <Route path="/login" element={<LoginPage />} />
+          }
+          {
+            !user.email && <Route path="/register" element={<RegisterPage />} />
+          }
+          
+          {
+            user.email && <Route path="/profile" element={<ProfilePage />} />
+          }
         </Routes>
       </BrowserRouter>
     </ProductsContext.Provider>

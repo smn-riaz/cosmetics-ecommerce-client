@@ -133,7 +133,7 @@ const RegisterPage = () => {
                   id="password"
                   className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
                   minLength={4}
-                  maxLength={16}
+                  maxLength={20}
                   required
                 />{" "}
               </label>

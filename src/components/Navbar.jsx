@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsCartCheck, BsChevronDown, BsSearch } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbArrowsCross } from "react-icons/tb";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ProductsContext } from "../App";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const [toggleMenu, setToggleMenu] = useState(false);
   const totalItems = useSelector((state) => state.cart.totalQuantity);
+  const {user, setUser} = useContext(ProductsContext)
+  
+  const handleSignout = () => {
+    setUser({})
+    navigate("/login", {replace: true})
+  }
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
       <div className="flex justify-start xl:justify-center items-center flex-1">
@@ -112,14 +120,24 @@ const Navbar = () => {
               )}
             </Link>
           </li>
-          <li className="flex justify-center items-center">
-            <BsSearch size={25} />
+          {
+            user.email ? <Link to="/profile"><button className="flex justify-center items-center uppercase font-semibold bg-secondaryLight p-1 rounded-2xl ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300" title="Profile">
+            {user.name[0].length<user.name[1].length ? user.name[0] : user.name[1]}
+          </button></Link> : <li className="flex justify-center items-center">
+          <BsSearch size={25} />
           </li>
-          <li className="flex justify-center items-center">
+          }
+          {
+            user.email ? <button className="flex justify-center items-center rounded-2xl p-1 space-x-1" onClick={handleSignout}>
+            
+            <CgProfile size={25} /> <span className="font-nunito font-semibold">Logout</span>
+      
+          </button> : <li className="flex justify-center items-center">
             <Link to="/login">
               <CgProfile size={25} />
             </Link>
           </li>
+          }
         </ul>
       </div>
 
@@ -230,6 +248,7 @@ const Navbar = () => {
                   <BsSearch size={25} />
                 </li>
               </Link>
+
               <Link to="/profile">
                 <li className="flex justify-center items-center px-2 my-6">
                   <CgProfile size={25} />
