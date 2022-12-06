@@ -4,8 +4,12 @@ import { AiFillStar } from "react-icons/ai";
 import Button from "./Button";
 import { data } from "../data";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ProductsContext } from "../App";
 
 const BestSellerProduct = () => {
+  const {products} = useContext(ProductsContext)
+  
   return (
     <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
       <div className="text-center space-y-4 py-8">
@@ -19,7 +23,7 @@ const BestSellerProduct = () => {
       <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
-        {data.map((product) => (
+        {products?.map((product) => (
           <Link to={`/product/${product.producttype}/${product.id}`}>
             <div className="mx-8 my-12">
               <div className="relative   bg-divBg group">

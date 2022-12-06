@@ -18,7 +18,7 @@ import {
 
 export const data = [
   {
-    image: best1,
+    image: "https://i.ibb.co/pd6XK50/best1.jpg",
     title: "Body Oil & Lotion",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 3,
@@ -29,7 +29,7 @@ export const data = [
     id: "perfect101",
   },
   {
-    image: best2,
+    image: "https://i.ibb.co/c3SdWzq/best2.jpg",
     title: "Perfect Concealer",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 2,
@@ -40,7 +40,7 @@ export const data = [
     id: "perfect202",
   },
   {
-    image: best3,
+    image: "https://i.ibb.co/cLZyQSZ/best3.jpg",
     title: "Soft Hand Lotion",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 3,
@@ -51,7 +51,7 @@ export const data = [
     id: "perfect303",
   },
   {
-    image: best4,
+    image: "https://i.ibb.co/FJ42zFj/best4.jpg",
     title: "Foundation Lotion",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 5,
@@ -62,7 +62,7 @@ export const data = [
     id: "perfect404",
   },
   {
-    image: best5,
+    image: "https://i.ibb.co/qNQVNfD/best5.jpg",
     title: "Soft BB Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 4,
@@ -73,7 +73,7 @@ export const data = [
     id: "bodycare101",
   },
   {
-    image: best6,
+    image: "https://i.ibb.co/ZdJ5jkx/best6.jpg",
     title: "Face Day Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 5,
@@ -84,7 +84,7 @@ export const data = [
     id: "bodycare202",
   },
   {
-    image: best7,
+    image: "https://i.ibb.co/T2yW9fn/best7.jpg",
     title: "Face BB CReam",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 6,
@@ -95,7 +95,7 @@ export const data = [
     id: "bodycare303",
   },
   {
-    image: best8,
+    image: "https://i.ibb.co/pd6XK50/best1.jpg",
     title: "Silk Hand Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 4,
@@ -106,11 +106,8 @@ export const data = [
     id: "bodycare404",
   },
 
-
-
-
   {
-    image: best9,
+    image: "https://i.ibb.co/CVSjLcs/best9.jpg",
     title: "Eyelash Curler",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 5,
@@ -121,7 +118,7 @@ export const data = [
     id: "mackupequipment101",
   },
   {
-    image: best10,
+    image: "https://i.ibb.co/x74V4rr/best10.jpg",
     title: "Foundation",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 3,
@@ -132,7 +129,7 @@ export const data = [
     id: "mackupequipment202",
   },
   {
-    image: best11,
+    image: "https://i.ibb.co/wMK78rK/best11.jpg",
     title: "Blusher",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 2,
@@ -143,7 +140,7 @@ export const data = [
     id: "mackupequipment303",
   },
   {
-    image: best12,
+    image: "https://i.ibb.co/BnVfPxc/best12.jpg",
     title: "Silk Night Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 5,
@@ -157,38 +154,39 @@ export const data = [
 
 
   {
-    image: best13,
+    image: "https://i.ibb.co/HYMHBcP/best13.jpg",
     title: "Silk Day Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 5,
-    category: "body care",
+    category: "Body Care",
     tags: ["cosmetics", "skincare"],
     price: 59,
     producttype: "awesomesoap",
     id: "awesomesoap101",
   },
   {
-    image: best14,
+    image: "https://i.ibb.co/0CHf7pd/best14.jpg",
     title: "Soft BB Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 4,
-    category: "body care",
+    category: "Body Care",
     tags: ["cosmetics", "skincare"],
     price: 59,
     producttype: "awesomesoap",
     id: "awesomesoap202",
   },
   {
-    image: best15,
+    image: "best15",
     title: "Silk Hand Cream",
     description: ["Viperfish scythe butterfish smelt pleco longfin escolar medusafish surfperch. Australian herring: Pacific viperfish grenadier orangestriped hatchetfish pearl danio leatherjacket. Butterflyfish crocodile shark zebra shark sergeant major peladillo ziege gunnel sea bream cavefish cobbler electric catfish medaka central mudminnow wasp fish jewel tetra","Snakehead hillstream loach salmon: black dragonfish man-of-war fish flyingfish yellow-and-black triplefin, mouthbrooder, orbicular velvetfish emperor bream sprat, wrasse thorny catfish. Gurnard leatherjacket nase tenuis flagfish zebra trout collared carpetshark, yellow-and-black triplefin ayu yellow jack"],
     instock: 3,
-    category: "body care",
+    category: "Body Care",
     tags: ["cosmetics", "skincare"],
     price: 59,
     producttype: "awesomesoap",
     id: "awesomesoap303",
   },
 ];
+
 
 

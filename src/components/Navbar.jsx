@@ -116,7 +116,9 @@ const Navbar = () => {
             <BsSearch size={25} />
           </li>
           <li className="flex justify-center items-center">
-            <Link to="/login"><CgProfile size={25} /></Link>
+            <Link to="/login">
+              <CgProfile size={25} />
+            </Link>
           </li>
         </ul>
       </div>
@@ -132,26 +134,28 @@ const Navbar = () => {
         {toggleMenu && (
           <div className="fixed top-0 right-0 overflow-y-hidden w-[100%] h-[100%] bg-secondaryLight flex-col flex justify-start items-center transition duration-700 z-[100] py-10">
             <TbArrowsCross
-              fontSize={27}
-              className="m-2 "
+              fontSize={35}
+              className="m-2 font-bold"
               onClick={() => setToggleMenu(false)}
             />
             <ul className="text-left">
               <li className="relative group my-12">
-                <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
-                  Home
-                </div>
+                <Link to="/">
+                  <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
+                    Home
+                  </div>
+                </Link>
               </li>
 
               <li className="relative group my-12">
-                <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
+                <div className="flex uppercase cursor-pointer text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                   Pages
                   <BsChevronDown
                     className="group-hover:rotate-180 duration-500"
                     size={10}
                   />
                 </div>
-                <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
+                <ul className="absolute z-50 cursor-pointer bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
                   <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                     About Us
                   </li>
@@ -174,7 +178,7 @@ const Navbar = () => {
               </li>
 
               <li className="relative group my-12">
-                <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
+                <div className="flex cursor-pointer uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                   Products
                   <BsChevronDown
                     className="group-hover:rotate-180 duration-500"
@@ -182,33 +186,55 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Concealer
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Body Care
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Makeup
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Soap
-                  </li>
+                  <Link to="/product/prefectconcealer">
+                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                      Concealer
+                    </li>
+                  </Link>
+                  <Link to="/product/bodycare">
+                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                      Body Care
+                    </li>
+                  </Link>
+                  <Link to="/product/mackupequipment">
+                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                      Makeup
+                    </li>
+                  </Link>
+                  <Link to="/product/awesomesoap">
+                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                      Soap
+                    </li>
+                  </Link>
                 </ul>
               </li>
 
-              <li className="flex justify-center items-start gap-1 p-2">
+              <li className="flex justify-center items-start font-medium gap-1 p-2">
                 Contacts
               </li>
 
-              <li className="flex justify-center items-center gap-1 p-2">
-                <CgProfile size={22} />
-              </li>
-              <li className="flex justify-center items-center gap-1 p-2">
-                <BsCartCheck size={22} />
-              </li>
-              <li className="flex justify-center items-center gap-1 p-2">
-                <BsSearch size={22} />
+              <li className="flex-col space-y-4 justify-between items-center">
+              <Link to="/cart">
+                <li className="flex justify-center items-center px-2 my-6">
+                  <BsCartCheck size={25} />
+                  {totalItems > 0 && (
+                    <sup className="text-lg font-bold font-raleway">
+                      {totalItems}
+                    </sup>
+                  )}
+                </li>
+              </Link>
+
+              <Link to="/">
+                <li className="flex justify-center items-center px-2 my-6">
+                  <BsSearch size={25} />
+                </li>
+              </Link>
+              <Link to="/profile">
+                <li className="flex justify-center items-center px-2 my-6">
+                  <CgProfile size={25} />
+                </li>
+              </Link>
               </li>
             </ul>
           </div>

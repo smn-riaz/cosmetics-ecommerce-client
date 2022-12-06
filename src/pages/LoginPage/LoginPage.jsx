@@ -1,54 +1,116 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useRef, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import styles from "../../styles/styles";
 
 const LoginPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [isUserAvailableMessage, setIsUserAvailableMessage] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleShowPassword = () => {
+    if (showPassword) {
+      setShowPassword(false);
+    } else {
+      setShowPassword(true);
+    }
+  };
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    fetch("http://localhost:5000/customer/isEmailAvailable", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.result > 0) {
+          
+        } else {
+          setIsUserAvailableMessage(true);
+          setTimeout(() => {
+            setIsUserAvailableMessage(false);
+            navigate("/register", { replace: true });
+          }, 10000);
+        }
+      });
+  };
+
   return (
     <main
       className={`flex justify-center items-center ${styles.paddingX} ${styles.paddingY}`}
     >
       <section className="p-8 border-secondaryLight border-2">
+      {isUserAvailableMessage && <p className="text-red-700 text-center font-nunito font-semibold">This Email is not found<br /> Please, Register !</p>}
         <h2 className="text-center text-3xl py-2 font-raleway">Sign in</h2>
-        <div className="w-[250px] space-y-4">
-          <p>
-            <label
-              htmlFor="email"
-              className="text-md font-semibold font-nunito"
-            >
-              E-mail address:
-              <input
-                type="text"
-                name=""
-                id="email"
-                className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
-              />{" "}
-            </label>
-          </p>
-          <p>
-            <label
-              htmlFor="password"
-              className="text-md font-semibold font-nunito"
-            >
-              Password:
-              <input
-                type="text"
-                name=""
-                id="password"
-                className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
-              />{" "}
-            </label>
-            <p className="py-1">
-              <input type="checkbox" name="" id="" /> Show password
+        <div className="w-[300px] space-y-4">
+          <form onSubmit={handleSubmit}>
+            <p className="pb-4">
+              <label htmlFor="email">
+                <span className="text-md font-semibold font-nunito">
+                  E-mail address :
+                </span>
+                <input
+                  ref={emailRef}
+                  type="text"
+                  name=""
+                  id="email"
+                  className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
+                />{" "}
+              </label>
             </p>
+            <p>
+              <label
+                htmlFor="password"
+              >
+               <span className="text-md font-semibold font-nunito">Password :</span>
+                <input
+                ref={passwordRef}
+                  type={showPassword ? "text" : "password"}
+                  name=""
+                  id="password"
+                  className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
+                  minLength={4}
+                  maxLength={16}
+                  required
+                />{" "}
+              </label>
+              <p className="py-1">
+                <label for="showPassword">
+                  <input type="checkbox" onClick={handleShowPassword} />{" "}
+                  {showPassword ? "hide" : "show"}
+                </label>
+              </p>
+            </p>
+
+            <div className="py-4 w-full">
+              <button
+                type="submit"
+                className="cursor-pointer px-6 w-full py-2 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-4"
+              >
+                Sign in
+              </button>
+            </div>
+          </form>
+
+          <p className="text-lg">
+            New to <span className="font-semibold">Cosmetics.ecoomerce?</span>{" "}
+            <Link to="/register" className="underline-offset-4 underline">
+              Register Now
+            </Link>
           </p>
-          <div className="py-4 w-full">
-         
-          <button className="cursor-pointer px-6 w-full py-2 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-4">Sign in</button>
         </div>
-        <p className="text-lg">New to Cosmetics.ecoomerce? <Link to="/register" className="underline-offset-4 underline">Register Now</Link></p>
-        </div>
-        
       </section>
     </main>
   );
