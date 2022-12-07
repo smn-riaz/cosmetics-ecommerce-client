@@ -1,22 +1,30 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsCartCheck, BsChevronDown, BsSearch } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TbArrowsCross } from "react-icons/tb";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductsContext } from "../App";
+import { cartActions } from "../store/cart-slice";
 
 const Navbar = () => {
   const navigate = useNavigate()
   const [toggleMenu, setToggleMenu] = useState(false);
-  const totalItems = useSelector((state) => state.cart.totalQuantity);
+  const dispatch = useDispatch()
+  const items = useSelector((state) => state.cart.items);
+  const cartQuantity = items.reduce((n, {quantity}) => n + quantity, 0)
+
   const {user, setUser} = useContext(ProductsContext)
+  const {email} = user
   
   const handleSignout = () => {
     setUser({})
+    dispatch(cartActions.setupCart([]))
     navigate("/login", {replace: true})
   }
+
+
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
       <div className="flex justify-start xl:justify-center items-center flex-1">
@@ -102,9 +110,9 @@ const Navbar = () => {
             </ul>
           </li>
 
-          <li className="flex justify-center uppercase font-medium items-start gap-1 xl:text-3xl">
+          <Link to="/checkout" className="flex justify-center uppercase font-medium items-start gap-1 xl:text-3xl">
             Contacts
-          </li>
+          </Link>
         </ul>
       </div>
 
@@ -113,9 +121,9 @@ const Navbar = () => {
           <li>
             <Link to="/cart" className="flex justify-center items-center">
               <BsCartCheck size={25} />
-              {totalItems > 0 && (
+              {cartQuantity > 0 && (
                 <sup className="text-lg font-bold font-raleway text-secondary">
-                  {totalItems}
+                  {cartQuantity}
                 </sup>
               )}
             </Link>
@@ -158,7 +166,7 @@ const Navbar = () => {
             />
             <ul className="text-left">
               <li className="relative group my-12">
-                <Link to="/">
+                <Link to="/" onClick={() => setToggleMenu(false)}>
                   <div className="flex uppercase text-sm flex-row justify-center font-medium items-center gap-1 top-0">
                     Home
                   </div>
@@ -204,22 +212,22 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  <Link to="/product/prefectconcealer">
+                  <Link to="/product/prefectconcealer" onClick={() => setToggleMenu(false)}>
                     <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                       Concealer
                     </li>
                   </Link>
-                  <Link to="/product/bodycare">
+                  <Link to="/product/bodycare" onClick={() => setToggleMenu(false)}>
                     <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                       Body Care
                     </li>
                   </Link>
-                  <Link to="/product/mackupequipment">
+                  <Link to="/product/mackupequipment" onClick={() => setToggleMenu(false)}>
                     <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                       Makeup
                     </li>
                   </Link>
-                  <Link to="/product/awesomesoap">
+                  <Link to="/product/awesomesoap" onClick={() => setToggleMenu(false)}>
                     <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
                       Soap
                     </li>
@@ -227,29 +235,29 @@ const Navbar = () => {
                 </ul>
               </li>
 
-              <li className="flex justify-center items-start font-medium gap-1 p-2">
+              <Link className="flex justify-center items-start font-medium gap-1 p-2">
                 Contacts
-              </li>
+              </Link>
 
               <li className="flex-col space-y-4 justify-between items-center">
-              <Link to="/cart">
+              <Link to="/cart" onClick={() => setToggleMenu(false)}>
                 <li className="flex justify-center items-center px-2 my-6">
                   <BsCartCheck size={25} />
-                  {totalItems > 0 && (
+                  {items.reduce((n, {quantity}) => n + quantity, 0) > 0 && (
                     <sup className="text-lg font-bold font-raleway">
-                      {totalItems}
+                      {items.reduce((n, {quantity}) => n + quantity, 0)}
                     </sup>
                   )}
                 </li>
               </Link>
 
-              <Link to="/">
+              <Link to="/" onClick={() => setToggleMenu(false)}>
                 <li className="flex justify-center items-center px-2 my-6">
                   <BsSearch size={25} />
                 </li>
               </Link>
 
-              <Link to="/profile">
+              <Link to="/profile" onClick={() => setToggleMenu(false)}>
                 <li className="flex justify-center items-center px-2 my-6">
                   <CgProfile size={25} />
                 </li>

@@ -1,12 +1,17 @@
 import React from "react";
 import { useContext } from "react";
+import { BsCart4 } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import profile from '../../assets/profile.png'
 import styles from "../../styles/styles";
 
 const ProfilePage = () => {
   const {user} = useContext(ProductsContext)
-  const {name, email, cart, order, role, city, houseNum, zip, phone} = user
+  const {name, email, order, role, city, houseNum, zip, phone} = user
+  const cart = useSelector(state => state.cart.items)
+
   return (
     <main className={`${styles.paddingX} ${styles.paddingY} w-full`}>
       <section className="flex justify-around">
@@ -29,7 +34,27 @@ const ProfilePage = () => {
           <h3 className="text-center font-nunito font-semibold text-2xl">Cart Summary</h3>
           
             {cart.length>0? 
-            <div></div> 
+            <div className="">
+              {(cart).map(c => <div className="flex justify-between items-center my-2 bg-secondaryLight space-x-5 rounded-lg">
+                <div>
+                  <img src={c.image} alt="" className="h-[80px] w-[80px] "/>
+                </div>
+                <div className="font-nunito text-md font-semibold p-2">
+                  <h3>{c.quantity}</h3>
+                </div>
+                <div className="font-nunito text-md font-semibold p-2">
+                <h3>${c.totalPrice}</h3>
+                </div>
+              </div>)}
+              <div className="flex justify-center mt-4">
+                <Link to="/cart">
+                  <button className="cursor-pointer p-2 w-fit border-[0.5px] bg-gray-700 font-nunito hover:bg-white text-primary hover:text-black duration-500 border-black xl:text-2xl flex">
+                    <BsCart4 /><span className="ml-1">Cart Details</span>
+                  </button>
+                </Link>
+              </div>
+            </div> 
+            
             : 
             <div>
               <h5 className="text-center font-nunito text-xl">No items in Cart</h5>  

@@ -1,15 +1,18 @@
 import React, { useRef, useState } from "react";
 import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import Button from "../../components/Button";
+import { cartActions } from "../../store/cart-slice";
+import { userActions } from "../../store/user-slice";
 import styles from "../../styles/styles";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [isUserAvailableMessage, setIsUserAvailableMessage] = useState(false);
-
+  const dispatch = useDispatch()
   const {setUser} = useContext(ProductsContext)
 
   const navigate = useNavigate();
@@ -40,8 +43,6 @@ const LoginPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result > 0) {
-
-
           fetch("http://localhost:5000/customer/signin", {
             method: "POST",
             headers: {
@@ -52,6 +53,9 @@ const LoginPage = () => {
             .then((res) => res.json())
             .then((data) => {
               setUser(data.result)
+              dispatch(userActions.loginUser(data.result))
+              dispatch(cartActions.setupCart(data.result.cart))
+              // localStorage.setItem('user', JSON.stringify(data.result));
               navigate('/profile', {replace: true})
             });
 

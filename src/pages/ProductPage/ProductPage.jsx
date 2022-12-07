@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { data } from "../../data";
+import { ProductsContext } from "../../App";
+
 import { cartActions } from "../../store/cart-slice";
 import styles from "../../styles/styles";
 
@@ -10,44 +11,44 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const location = useLocation().pathname.split("/");
   const productType = location[location.length - 1];
-  const productData = data.filter((product) => product.id === productType)[0];
+  const {products} = useContext(ProductsContext)
+  const productData = products.filter((product) => product.id === productType)[0];
   const navigate = useNavigate();
   const {
     title,
+    price,
+    id,
+    producttype,
     image,
     description,
     instock,
     category,
     tags,
-    price,
-    id,
-    producttype,
   } = productData;
 
-  const handleAddToCart = () => {
+  const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
         id,
         title,
+        price,    
         image,
         description,
         instock,
         category,
         tags,
-        price,
-        quantity:1,
-        producttype,
+        producttype,  
       })
     );
-
     navigate("/cart");
   };
+
 
   return (
     <section className={`sm:px-10 px-6 py-2 w-full`}>
       <div className="grid grid-cols-1 sm:grid-cols-2 justify-items-center md:p-12 space-x-10">
         <div className="md:p-8 my-4 mx-2">
-          <img src={image} alt="" />
+          <img src={image} alt="" className="w-[400px]"/>
         </div>
 
         <div className="flex flex-row justify-end items-center md:p-8 my-4 mx-2">
@@ -93,7 +94,7 @@ const ProductPage = () => {
               <div className="p-2">
                 <button
                   className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6"
-                  onClick={handleAddToCart}
+                  onClick={addToCartHandler}
                 >
                   {" "}
                   Add to Cart

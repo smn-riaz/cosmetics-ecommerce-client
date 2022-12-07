@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link, useLocation, useNavigation } from "react-router-dom";
-import { data } from "../../data";
+import { ProductsContext } from "../../App";
+
 import styles from "../../styles/styles";
 
 const ProductsPage = () => {
   
   const navigation = useLocation().pathname.split("/")
   const productType = navigation[navigation.length-1]
-  const productsData = data.filter((d) => d.producttype === productType)
+  const {products} = useContext(ProductsContext)
+ 
+  const productsData = products.filter((d) => d.producttype === productType)
 
   const [pageHeadline, setPageHeadline] = useState("")
 

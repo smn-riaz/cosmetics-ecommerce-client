@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DicountText from "./components/DicountText";
 import Navbar from "./components/Navbar";
@@ -13,12 +14,14 @@ import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ProductTypePage from "./pages/ProductTypePage/ProductTypePage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import { userActions } from "./store/user-slice";
 
 export const ProductsContext = createContext();
 
 function App() {
   const [products, setProducts] = useState();
   const [user, setUser] = useState({})
+
   useEffect(() => {
     fetch("http://localhost:5000/product/allProduct")
       .then((res) => res.json())
