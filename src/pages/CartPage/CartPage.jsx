@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AiFillDelete, AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { MdDeleteForever } from "react-icons/md";
-import { FaShippingFast } from "react-icons/fa";
+
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../../components/Navbar";
 import { cartActions } from "../../store/cart-slice";
@@ -202,7 +202,7 @@ const CartPage = () => {
         ) : (
           <div className="flex justify-center items-center py-8 h-[40vh]">
             <div className="text-center space-y-6">
-            <h2 className="font-nunito text-4xl">No item in Cart</h2>
+            <h2 className="font-nunito text-gray-500 text-4xl">There are no items in this cart</h2>
             <div>
               <Button title="continue shopping" goLink="/product" />
             </div>

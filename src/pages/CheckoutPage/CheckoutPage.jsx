@@ -28,7 +28,23 @@ const CheckoutPage = () => {
 
 const handlePlaceOrder = () => {
     if(agree) {
-      
+      const orderDetailsForOrder = {
+        orderId: Date.now(),
+        date: new Date().toString(),
+        email: "",
+        phone: "",
+        shippingAddress: "",
+        orderProducts:[],
+        deliveryStatus:"Pending",
+        totalPayment: 0
+      }
+
+      const orderDetailsForCustomer = [{
+        orderDate: new Date().toString(),
+        orderProducts:[],
+        totalPayment:0,
+        shippingAddress:""
+      }]
     }
 }
 

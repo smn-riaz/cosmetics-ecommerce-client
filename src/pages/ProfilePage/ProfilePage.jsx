@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import profile from '../../assets/profile.png'
 import styles from "../../styles/styles";
+import { FaShippingFast } from "react-icons/fa";
 
 const ProfilePage = () => {
   const {user} = useContext(ProductsContext)
@@ -15,18 +16,14 @@ const ProfilePage = () => {
   return (
     <main className={`${styles.paddingX} ${styles.paddingY} w-full`}>
       <section className="flex justify-around">
-        <div className="border-2 p-4 space-y-4">
+        <div className="border-2 p-4 space-y-4 h-fit">
           <div className="flex justify-center">
             <img src={profile} alt="" className="h-[100px]"/>
           </div>
           <h3 className="text-center font-nunito font-semibold text-2xl"><span className="capitalize">{name[0][0]}</span>. <span className="capitalize">{name[1]}</span></h3>
-          <div className="font-nunito font-medium text-lg space-y-3">
-            <p>Email : <span className="font-semibold">{email}</span></p>
-            {phone && <p>Phone : <span className="font-semibold">{phone}</span></p>}
-            <p>Role : <span className="font-semibold">{role}</span></p>
-            {city && <p>City : <span className="font-semibold">{city}</span></p>}
-            {houseNum &&  <p>House No : <span className="font-semibold">{houseNum}</span></p>}
-            {zip && <p>ZIP : <span className="font-semibold">{zip}</span></p>}
+          <div className="font-nunito font-medium text-lg space-y-3 text-center">
+              <p>{email}</p>
+            <button className="text-md text-gray-500 border-[1px] p-1 rounded-3xl border-gray-400">{role}</button>
           </div>
         </div>
 
@@ -35,21 +32,33 @@ const ProfilePage = () => {
           
             {cart.length>0? 
             <div className="">
-              {(cart).map(c => <div className="flex justify-between items-center my-2 bg-secondaryLight space-x-5 rounded-lg">
-                <div>
-                  <img src={c.image} alt="" className="h-[80px] w-[80px] "/>
+              {(cart).map(c => <div className="flex justify-between items-center my-2 bg-secondaryLight space-x-2 rounded-lg border-[1px] border-secondary">
+                <div className="flex justify-start items-center">
+                  <div>
+                    <img src={c.image} alt="" className="h-[80px] w-[80px] rounded-l-lg"/>
+                  </div>
+                  <div className="font-nunito text-md font-semibold p-2">
+                    <h3>{c.title}</h3>
+                  </div>
                 </div>
-                <div className="font-nunito text-md font-semibold p-2">
-                  <h3>{c.quantity}</h3>
-                </div>
-                <div className="font-nunito text-md font-semibold p-2">
-                <h3>${c.totalPrice}</h3>
-                </div>
+               <div className="flex justify-center items-center">
+                <div className="font-nunito text-md text-center font-semibold p-2">
+                    <h3 className="bg-white h-[25px] w-[25px] rounded-full border-[0.5px] border-secondary">{c.quantity}</h3>
+                  </div>
+                  <div className="font-nunito text-md font-semibold p-2">
+                  <h3>${c.totalPrice}</h3>
+                  </div>
+               </div>
               </div>)}
-              <div className="flex justify-center mt-4">
+              <div className="flex justify-around items-center mt-4">
                 <Link to="/cart">
                   <button className="cursor-pointer p-2 w-fit border-[0.5px] bg-gray-700 font-nunito hover:bg-white text-primary hover:text-black duration-500 border-black xl:text-2xl flex">
-                    <BsCart4 /><span className="ml-1">Cart Details</span>
+                    <BsCart4  size={20}/><span className="ml-1">Cart Details</span>
+                  </button>
+                </Link>
+                <Link to="/checkout">
+                  <button className="cursor-pointer p-2 w-fit border-[0.5px] bg-gray-700 font-nunito hover:bg-white text-primary hover:text-black duration-500 border-black xl:text-2xl flex">
+                    <FaShippingFast size={20}/><span className="ml-1">Checkout</span>
                   </button>
                 </Link>
               </div>

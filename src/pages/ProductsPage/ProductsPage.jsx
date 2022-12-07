@@ -10,8 +10,8 @@ const ProductsPage = () => {
   
   const navigation = useLocation().pathname.split("/")
   const productType = navigation[navigation.length-1]
-  const {products} = useContext(ProductsContext)
- 
+
+  const [products, setProducts] = useState([])
   const productsData = products.filter((d) => d.producttype === productType)
 
   const [pageHeadline, setPageHeadline] = useState("")
@@ -31,6 +31,13 @@ const ProductsPage = () => {
       setPageHeadline("Body Care")
     }
   },[productType])
+  useEffect(() => {
+    fetch("http://localhost:5000/product/allProduct")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data.data);
+      });
+  }, []);
 
   return (
     <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
