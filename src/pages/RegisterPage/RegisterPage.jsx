@@ -3,6 +3,11 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import styles from "../../styles/styles";
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import {GoPrimitiveDot} from 'react-icons/go'
+import { useEffect } from "react";
+
 
 const RegisterPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -20,7 +25,18 @@ const RegisterPage = () => {
   const lastNameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
+  
+  const [phoneNo, setPhoneNo] = useState(0)
+  const [phoneAlert, setPhoneAlert] = useState(false)
 
+  useEffect(() => {
+    if(phoneNo.length===13){
+      setPhoneAlert(true)
+    } else {
+      setPhoneAlert(false)
+    }
+  },[phoneNo])
+ 
   const handleSubmit = (e) => {
     e.preventDefault()
     const firstName = firstNameRef.current.value
@@ -29,7 +45,7 @@ const RegisterPage = () => {
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
-
+  if(phoneNo.length===13){
     fetch("http://localhost:5000/customer/isEmailAvailable", {
       method: "POST",
       headers: {
@@ -51,18 +67,19 @@ const RegisterPage = () => {
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify({name, email, password,cart:[], order:[], role:"customer", city:"", houseNum:"", zip:"", phone:""}),
+            body: JSON.stringify({name, email, password,cart:[], order:[], role:"customer",phone:phoneNo}),
           })
             .then((res) => res.json())
             .then((data) => {
               if(data.message){
-                setUser({name, email,cart:[], order:[], role:"customer", city:"", houseNum:"", zip:"", phone:""})
+                setUser({name, email,cart:[], order:[], role:"customer",phone:phoneNo})
                 navigate("/profile", { replace: true })
 
               }
             });
         }
       })
+  }
 
     
 
@@ -106,6 +123,7 @@ const RegisterPage = () => {
                 />{" "}
               </label>
             </p>
+
             <p className="pb-4">
               <label
                 htmlFor="email"
@@ -121,6 +139,24 @@ const RegisterPage = () => {
                 />{" "}
               </label>
             </p>
+
+         
+            <p className="pb-4">
+<label
+                htmlFor="phone"
+                
+              >
+                <span className="text-md font-semibold font-nunito flex items-center">Phone : {phoneAlert?<span className="text-green-600"><GoPrimitiveDot /></span>:<span className="text-yellow-600"><GoPrimitiveDot /></span>}</span>
+<p className="border-[1px] border-secondary p-1"><PhoneInput
+  country={'bd'}
+  enableAreaCodes={true}
+  countryCodeEditable={false}
+  onChange={phone => setPhoneNo( phone )}
+  inputStyle={{border:0, width:'max-content'}}
+  buttonStyle={{border:0}}
+/></p>
+</label>
+</p>
             <p>
               <label
                 htmlFor="password"

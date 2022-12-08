@@ -79,7 +79,7 @@ const LoginPage = () => {
       <section className="p-8 border-secondaryLight border-2">
         {isUserAvailableMessage && (
           <p className="text-red-700 text-center font-nunito font-semibold">
-            This Email is not found
+            This Email is not found.
             <br /> Please, Register !
           </p>
         )}

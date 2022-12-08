@@ -14,42 +14,51 @@ const CheckoutPage = () => {
   const { user } = useContext(ProductsContext);
   const cartItems = useSelector((state) => state.cart.items);
   const userItem = useSelector((state) => state.user.user);
-  console.log(userItem)
+
   const [agree, setAgree] = useState(false)
   
   // var retrievedObject = localStorage.getItem("user");
   // const { name, email, phone, city, houseNum, zip, order } =
   //   JSON.parse(retrievedObject) || user;
-  const { name, email, phone, city, houseNum, zip, order } = user
+  const { name, email, phone, order } = user
     const cityRef = useRef()
     const houseNumRef = useRef()
     const zipRef = useRef()
     const phoneRef = useRef()
+    const orderId = Date.now()
+    const totalPayment = cartItems.reduce((n, { totalPrice }) => n + totalPrice, 0) + 5
 
-const handlePlaceOrder = () => {
+const handlePlaceOrder = (e) => {
+  e.preventDefault()
     if(agree) {
       const orderDetailsForOrder = {
-        orderId: Date.now(),
-        date: new Date().toString(),
+        orderId,
+        orderDate: new Date().toLocaleDateString(),
         email: "",
         phone: "",
-        shippingAddress: "",
+        shippingAddress: {city:cityRef.current.value, houseNum:houseNumRef.current.value, zip:zipRef.current.value},
         orderProducts:[],
         deliveryStatus:"Pending",
-        totalPayment: 0
+        totalPayment
       }
-
       const orderDetailsForCustomer = [{
-        orderDate: new Date().toString(),
-        orderProducts:[],
-        totalPayment:0,
-        shippingAddress:""
+        orderId,
+        orderDate: new Date().toLocaleDateString(),
+        orderProducts:cartItems,
+        totalPayment,
+        shippingAddress: {city:cityRef.current.value, houseNum:houseNumRef.current.value, zip:zipRef.current.value},
       }]
+
+      console.log(orderDetailsForCustomer)
+      
     }
 }
 
-// console.log(Date.now())
-// console.log(agree);
+
+
+
+
+
   return (
     <main>
       <form className="sm:flex justify-between items-start p-8" onSubmit={handlePlaceOrder}>
@@ -78,7 +87,6 @@ const handlePlaceOrder = () => {
               <input
                 type="text"
                 ref={cityRef}
-                value={city}
                 placeholder="Town/City*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
               />
@@ -86,7 +94,6 @@ const handlePlaceOrder = () => {
             <div>
               <input
                 type="text"
-                value={houseNum}
                 ref={houseNumRef}
                 placeholder="House number*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
@@ -96,17 +103,16 @@ const handlePlaceOrder = () => {
               <input
                 type="number"
                 ref={zipRef}
-                value={zip}
                 placeholder="ZIP Code"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
               />
             </div>
             <div>
               <input
-                type="number"
+                type="tel"
                 ref={phoneRef}
                 value={phone}
-                maxLength={11}
+                maxLength={14}
                 placeholder="Phone*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
                 required
@@ -144,7 +150,7 @@ const handlePlaceOrder = () => {
               <h3 className="text-lg">
                 Product Cost:{" "}
                 <span className="font-semibold">
-                  ${cartItems.reduce((n, { totalPrice }) => n + totalPrice, 0)}
+                  ${totalPayment-5}
                 </span>
               </h3>
               <h3 className="text-lg">
@@ -153,9 +159,7 @@ const handlePlaceOrder = () => {
               <h3 className="text-lg">
                 Total:{" "}
                 <span className="font-semibold">
-                  $
-                  {cartItems.reduce((n, { totalPrice }) => n + totalPrice, 0) +
-                    5}
+                  $ {totalPayment}
                 </span>
               </h3>
               <div>
