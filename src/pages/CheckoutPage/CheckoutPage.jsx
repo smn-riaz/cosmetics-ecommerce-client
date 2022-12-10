@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import Button from "../../components/Button";
 import Navbar from "../../components/Navbar";
@@ -11,11 +11,15 @@ import { useRef } from "react";
 import { useState } from "react";
 import { current } from "@reduxjs/toolkit";
 import CartItems from "../../components/CartItems";
+import bag from '../../assets/bag.gif'
+
 
 const CheckoutPage = () => {
   const { user } = useContext(ProductsContext);
   const cartItems = useSelector((state) => state.cart.items);
   const userItem = useSelector((state) => state.user.user);
+  const [orderSuccess, setOrderSuccess] = useState(false)
+  const navigate = useNavigate()
 
   const [agree, setAgree] = useState(false)
   
@@ -58,7 +62,37 @@ const handlePlaceOrder = (e) => {
         shippingAddress: {city, houseNum, zip},
         shippingPhone
       }
+   
 
+      fetch("http://localhost:5000/order/addOrder", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderDetailsForOrder),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+        })
+
+      fetch("http://localhost:5000/customer/addOrder", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({email, order:orderDetailsForCustomer}),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.message){
+          setOrderSuccess(true)
+          setTimeout(() => {
+            setOrderSuccess(false)
+            navigate("/profile", {replace:"true"})
+          }, 4000);
+        }
+      })
       
    
       
@@ -71,6 +105,7 @@ const handlePlaceOrder = (e) => {
 
   return (
     <main>
+      <div className={orderSuccess?"flex justify-center items-center font-medium opacity-100 duration-500":"flex justify-center items-center font-medium duration-500 opacity-0"}><h5 className="text-green-700 font-nunito text-lg">Congratulations ! Order Placed Successfully.</h5></div>
       <form className="sm:flex justify-between items-start p-8" onSubmit={handlePlaceOrder}>
         <div className="flex-1 px-4">
           <h2 className="font-nunito text-3xl pb-4">Billing Details</h2>
@@ -122,7 +157,7 @@ const handlePlaceOrder = (e) => {
               <input
                 type="tel"
                 ref={shippingPhoneRef}
-                value={+phone}
+                defaultValue={+phone}
                 maxLength={14}
                 placeholder="Shipping Phone No*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
@@ -208,10 +243,12 @@ const handlePlaceOrder = (e) => {
           </div>
 
           <div>
-            <button className="cursor-pointer px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6" type={agree?"submit":""}>
-          {agree? "Confirm order" : "Agree first" }
-        </button>
+            <button className="cursor-pointer px-4 w-fit py-2 border-[0.5px] flex items-center hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6" type={agree?"submit":""}>
+          {agree? "Confirm order" : "Agree first" }{orderSuccess && <img src={bag} alt="bag" className="h-[35px] w-[35px]"/>}
+        </button> 
           </div>
+
+          
 
         </div>
       </form>

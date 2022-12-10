@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DicountText from "./components/DicountText";
 import Navbar from "./components/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -44,18 +45,13 @@ function App() {
             path="/product/:producttype/:product"
             element={<ProductPage />}
           />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" element={<CheckoutPage />} />
-          {
-            !user.email && <Route path="/login" element={<LoginPage />} />
-          }
-          {
-            !user.email && <Route path="/register" element={<RegisterPage />} />
-          }
+          <Route path="/cart" element={<PrivateRoute><CartPage /></PrivateRoute>} />
+          <Route path="/checkout" element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+
+          <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
           
-          {
-            user.email && <Route path="/profile" element={<ProfilePage />} />
-          }
         </Routes>
       </BrowserRouter>
     </ProductsContext.Provider>
