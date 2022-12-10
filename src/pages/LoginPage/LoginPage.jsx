@@ -85,7 +85,7 @@ const LoginPage = () => {
         )}
         <h2 className="text-center text-3xl py-2 font-raleway">Sign in</h2>
         <div className="w-[300px] space-y-4">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="true">
             <p className="pb-4">
               <label htmlFor="email">
                 <span className="text-md font-semibold font-nunito">

@@ -129,7 +129,7 @@ const Navbar = () => {
             </Link>
           </li>
           {
-            user.email ? <Link to="/profile"><button className="flex justify-center items-center uppercase font-semibold bg-secondaryLight p-1 rounded-2xl ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300" title="Profile">
+            user.email ? <Link to="/profile"><button className="flex justify-center items-center uppercase font-semibold bg-secondaryLight p-1 rounded-xl ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300" title="Profile">
             {user.name[0].length<user.name[1].length ? user.name[0] : user.name[1]}
           </button></Link> : <li className="flex justify-center items-center">
           <BsSearch size={25} />

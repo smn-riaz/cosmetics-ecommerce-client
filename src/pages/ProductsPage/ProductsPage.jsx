@@ -52,7 +52,7 @@ const ProductsPage = () => {
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
         {productsData.map((product) => (
-          <Link to={`/product/${product.producttype}/${product.id}`}>
+          <Link to={`/product/${product.producttype}/${product.id}`} state={product}>
             <div className="mx-8 my-12">
               <div className="relative   bg-divBg group">
                 <img

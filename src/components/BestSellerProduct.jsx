@@ -1,15 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/styles";
 import { AiFillStar } from "react-icons/ai";
 import Button from "./Button";
-import { data } from "../data";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProductsContext } from "../App";
+import { useEffect } from "react";
 
 const BestSellerProduct = () => {
-  const {products} = useContext(ProductsContext)
+  const [products, setProducts] = useState([]) 
+  const [projectData, setProjectData] = useState([]);
+  const [moreProjects, setMoreProjects] = useState(false);
+  const handleMoreProjects = () => {
+    if (moreProjects === false) {
+
+      setProjectData(products);
+      setMoreProjects(true);
   
+     
+    }
+  };
+
+  const handleLessProjects = () => {
+
+      setProjectData(products.slice(0, 12));
+      setMoreProjects(false);
+  
+   
+  };
+
+
+  useEffect(() => {
+    fetch("http://localhost:5000/product/allProduct")
+      .then((res) => res.json())
+      .then((data) => {
+        setProjectData(data.data.slice(0, 12))
+        setProducts(data.data);
+      });
+  }, []);
+
+  
+
   return (
     <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
       <div className="text-center space-y-4 py-8">
@@ -23,8 +54,8 @@ const BestSellerProduct = () => {
       <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
-        {products?.map((product) => (
-          <Link to={`/product/${product.producttype}/${product.id}`}>
+        {projectData.map((product) => (
+          <Link to={`/product/${product.producttype}/${product.id}`} state={product}>
             <div className="mx-8 my-12">
               <div className="relative   bg-divBg group">
                 <img
@@ -60,9 +91,26 @@ const BestSellerProduct = () => {
           </Link>
         ))}
       </div>
+      <div className="flex justify-end items-center">
+        {!moreProjects ? (
+          <button
+            onClick={handleMoreProjects}
+            className="cursor-pointer  w-fit p-2 hover:bg-gray-900 font-raleway bg-gray-700 text-white hover:text-primary duration-500 border-black xl:text-4xl xl:px-8 xl:py-6"
+          >
+            More Products
+          </button>
+        ) : (
+          <button
+            onClick={handleLessProjects}
+            className="cursor-pointer  w-fit p-2 hover:bg-gray-900 font-raleway bg-gray-700 text-white hover:text-primary duration-500 border-black xl:text-4xl xl:px-8 xl:py-6"
+          >
+            Less Products
+          </button>
+        )}
+      </div>
 
-      <div className="flex justify-center items-center py-2">
-      <Button title="Explore More" goLink="/product"/>
+      <div className="flex justify-center items-center py-4">
+        <Button title="Explore Category" goLink="/product" />
       </div>
     </section>
   );

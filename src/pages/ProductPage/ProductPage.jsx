@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -9,11 +9,13 @@ import styles from "../../styles/styles";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
-  const location = useLocation().pathname.split("/");
-  const productType = location[location.length - 1];
-  const {products} = useContext(ProductsContext)
-  const productData = products.filter((product) => product.id === productType)[0];
   const navigate = useNavigate();
+  const location = useLocation()
+  const locationPath = useLocation().pathname.split("/");
+  const productType = locationPath[locationPath.length - 1];
+  const productData = location.state
+
+ 
   const {
     title,
     price,
@@ -25,6 +27,9 @@ const ProductPage = () => {
     category,
     tags,
   } = productData;
+
+ 
+ 
 
   const addToCartHandler = () => {
     dispatch(
@@ -42,6 +47,9 @@ const ProductPage = () => {
     );
     navigate("/cart");
   };
+
+
+
 
 
   return (

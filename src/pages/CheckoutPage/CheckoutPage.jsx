@@ -9,6 +9,8 @@ import styles from "../../styles/styles";
 import {BsCart4} from 'react-icons/bs'
 import { useRef } from "react";
 import { useState } from "react";
+import { current } from "@reduxjs/toolkit";
+import CartItems from "../../components/CartItems";
 
 const CheckoutPage = () => {
   const { user } = useContext(ProductsContext);
@@ -24,38 +26,46 @@ const CheckoutPage = () => {
     const cityRef = useRef()
     const houseNumRef = useRef()
     const zipRef = useRef()
-    const phoneRef = useRef()
+    const shippingPhoneRef = useRef()
     const orderId = Date.now()
     const totalPayment = cartItems.reduce((n, { totalPrice }) => n + totalPrice, 0) + 5
 
 const handlePlaceOrder = (e) => {
   e.preventDefault()
-    if(agree) {
+  const houseNum = houseNumRef.current.value
+  const zip = zipRef.current.value
+  const city = cityRef.current.value
+  const shippingPhone = shippingPhoneRef.current.value
+  const allValue = agree && houseNum && city && zip && name && email && phone && cartItems.length>0
+  
+    if(allValue) {
       const orderDetailsForOrder = {
         orderId,
         orderDate: new Date().toLocaleDateString(),
-        email: "",
-        phone: "",
-        shippingAddress: {city:cityRef.current.value, houseNum:houseNumRef.current.value, zip:zipRef.current.value},
-        orderProducts:[],
+        email,
+        phone,
+        shippingAddress: {city, houseNum, zip},
+        orderProducts:cartItems,
         deliveryStatus:"Pending",
-        totalPayment
+        totalPayment,
+        shippingPhone
       }
-      const orderDetailsForCustomer = [{
+      const orderDetailsForCustomer = {
         orderId,
         orderDate: new Date().toLocaleDateString(),
         orderProducts:cartItems,
         totalPayment,
-        shippingAddress: {city:cityRef.current.value, houseNum:houseNumRef.current.value, zip:zipRef.current.value},
-      }]
+        shippingAddress: {city, houseNum, zip},
+        shippingPhone
+      }
 
-      console.log(orderDetailsForCustomer)
+      
+   
       
     }
+
+    
 }
-
-
-
 
 
 
@@ -68,19 +78,17 @@ const handlePlaceOrder = (e) => {
             <div className="flex justify-between items-center">
               <input
                 type="text"
-                name=""
-                value={name[0]}
-                id=""
+                value={name[0].toUpperCase()}
                 placeholder="First name*"
                 className="border-[1px] border-secondaryLight w-full mr-2 p-2 focus:outline-none"
+                readOnly
               />
               <input
                 type="text"
-                name=""
-                value={name[1]}
-                id=""
+                value={name[1].toUpperCase()}
                 placeholder="Last name*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                readOnly
               />
             </div>
             <div>
@@ -89,6 +97,7 @@ const handlePlaceOrder = (e) => {
                 ref={cityRef}
                 placeholder="Town/City*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                required
               />
             </div>
             <div>
@@ -97,6 +106,7 @@ const handlePlaceOrder = (e) => {
                 ref={houseNumRef}
                 placeholder="House number*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                required
               />
             </div>
             <div>
@@ -105,15 +115,16 @@ const handlePlaceOrder = (e) => {
                 ref={zipRef}
                 placeholder="ZIP Code"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                required
               />
             </div>
             <div>
               <input
                 type="tel"
-                ref={phoneRef}
-                value={phone}
+                ref={shippingPhoneRef}
+                value={+phone}
                 maxLength={14}
-                placeholder="Phone*"
+                placeholder="Shipping Phone No*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
                 required
               />
@@ -124,26 +135,32 @@ const handlePlaceOrder = (e) => {
                 value={email}
                 placeholder="Email address*"
                 className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
-
+                readOnly
               />
+            </div>
+          </div>
+
+          <div className="py-10">
+            <div>
+              <h1 className="uppercase text-xl font-raleway font-medium">
+                Your Checkout Products
+              </h1>
+            </div>
+            <div>
+            {cartItems.length>0 && 
+            <div className="">
+              {(cartItems).map(cart => <CartItems cart={cart} />)}
+            </div> 
+            }
             </div>
           </div>
         </div>
 
         <div className="px-4 space-y-12">
-          <div>
-            <div>
-              <h1 className="uppercase text-xl font-raleway font-medium">
-                Your Order
-              </h1>
-            </div>
-            <div>Oders list : {order?.length}</div>
-          </div>
-
           <div className="font-nunito p-0 space-y-4">
             <div>
               <h1 className="uppercase text-xl font-raleway font-medium">
-                Cart Summary :
+                Order Summary :
               </h1>
             </div>
             <div className="space-y-2">
