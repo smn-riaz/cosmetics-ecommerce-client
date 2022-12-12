@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 
 import { cartActions } from "../../store/cart-slice";
@@ -14,7 +14,7 @@ const ProductPage = () => {
   const locationPath = useLocation().pathname.split("/");
   const productType = locationPath[locationPath.length - 1];
   const productData = location.state
-
+  const {user} = useContext(ProductsContext)
  
   const {
     title,
@@ -47,8 +47,6 @@ const ProductPage = () => {
     );
     navigate("/cart");
   };
-
-
 
 
 
@@ -100,13 +98,23 @@ const ProductPage = () => {
 
             <div className="ss:flex items-center justify-between">
               <div className="p-2">
-                <button
+                {
+                  user.name? <button
                   className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6"
                   onClick={addToCartHandler}
                 >
                   {" "}
                   Add to Cart
+                </button> 
+                :
+                <button
+                  className="px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6"
+                onClick={() => alert("Login, first!")}
+                >
+                  {" "}
+                  <Link to="/login">Add to Cart</Link>
                 </button>
+                }
               </div>
             </div>
           </div>

@@ -8,11 +8,17 @@ import profile from '../../assets/profile.png'
 import styles from "../../styles/styles";
 import { FaShippingFast } from "react-icons/fa";
 import CartItems from "../../components/CartItems";
+import Button from "../../components/Button";
 
 const ProfilePage = () => {
   const {user} = useContext(ProductsContext)
   const {name, email, order, role, city, houseNum, zip, phone} = user
   const cart = useSelector(state => state.cart.items)
+
+  const ascendingOrder = [...order].reverse()
+  
+
+  
 
   return (
     <main className={`${styles.paddingX} ${styles.paddingY} w-full`}>
@@ -51,6 +57,9 @@ const ProfilePage = () => {
             : 
             <div>
               <h5 className="text-center font-nunito text-xl">No items in Cart</h5>  
+              <div className="py-4">
+              <Button title="continue shopping" goLink="/product" />
+            </div>
             </div>}
        
         </div>
@@ -60,10 +69,10 @@ const ProfilePage = () => {
           
             {order.length>0? 
             <div>
-              {order.map(ord => 
+              {ascendingOrder.map(ord => 
               <div className="border-[1px] border-secondaryLight p-2 space-y-1 my-2">
                   <p className="text-center text-sm font-semibold underline-offset-2 underline py-1">{ord.orderId}</p>
-                  <p>Date: <span className="font-medium">{ord.orderDate}</span></p>
+                  <p>Date: <span className="font-medium">{ord.orderDate.date}</span> , <span className="text-sm font-medium">({ord.orderDate.time})</span></p>
                   <p>Shipping Address: <span className="font-medium">{ord.shippingAddress.houseNum},{ord.shippingAddress.city}</span></p>
                   <p>Phone: <span className="font-medium">{ord.shippingPhone}</span></p>
                   <p>Total Payment: <span className="font-medium">${ord.totalPayment}</span></p>

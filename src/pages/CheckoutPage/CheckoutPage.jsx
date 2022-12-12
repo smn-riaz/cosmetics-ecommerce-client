@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import Button from "../../components/Button";
@@ -12,12 +12,14 @@ import { useState } from "react";
 import { current } from "@reduxjs/toolkit";
 import CartItems from "../../components/CartItems";
 import bag from '../../assets/bag.gif'
+import { cartActions } from "../../store/cart-slice";
 
 
 const CheckoutPage = () => {
-  const { user } = useContext(ProductsContext);
+  const { user, setUser } = useContext(ProductsContext);
   const cartItems = useSelector((state) => state.cart.items);
   const userItem = useSelector((state) => state.user.user);
+  const dispatch = useDispatch()
   const [orderSuccess, setOrderSuccess] = useState(false)
   const navigate = useNavigate()
 
@@ -41,29 +43,29 @@ const handlePlaceOrder = (e) => {
   const city = cityRef.current.value
   const shippingPhone = shippingPhoneRef.current.value
   const allValue = agree && houseNum && city && zip && name && email && phone && cartItems.length>0
-  
-    if(allValue) {
-      const orderDetailsForOrder = {
-        orderId,
-        orderDate: new Date().toLocaleDateString(),
-        email,
-        phone,
-        shippingAddress: {city, houseNum, zip},
-        orderProducts:cartItems,
-        deliveryStatus:"Pending",
-        totalPayment,
-        shippingPhone
-      }
-      const orderDetailsForCustomer = {
-        orderId,
-        orderDate: new Date().toLocaleDateString(),
-        orderProducts:cartItems,
-        totalPayment,
-        shippingAddress: {city, houseNum, zip},
-        shippingPhone
-      }
-   
 
+  const orderDetailsForOrder = {
+    orderId,
+    orderDate: {date: new Date().toLocaleDateString(), time: new Date().toLocaleTimeString()},
+    email,
+    phone,
+    shippingAddress: {city, houseNum, zip},
+    orderProducts:cartItems,
+    deliveryStatus:"Pending",
+    totalPayment,
+    shippingPhone
+  }
+  const orderDetailsForCustomer = {
+    orderId,
+    orderDate: {date: new Date().toLocaleDateString(), time: new Date().toLocaleTimeString()},
+    orderProducts:cartItems,
+    deliveryStatus:"Pending",
+    totalPayment,
+    shippingAddress: {city, houseNum, zip},
+    shippingPhone
+  }
+
+    if(allValue) {
       fetch("http://localhost:5000/order/addOrder", {
         method: "POST",
         headers: {
@@ -73,7 +75,7 @@ const handlePlaceOrder = (e) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
         })
 
       fetch("http://localhost:5000/customer/addOrder", {
@@ -87,10 +89,14 @@ const handlePlaceOrder = (e) => {
       .then((data) => {
         if(data.message){
           setOrderSuccess(true)
+          dispatch(cartActions.setupCart([]))
+          setUser(user => ({
+            ...user, order:[...user.order, orderDetailsForCustomer]
+          }))
           setTimeout(() => {
             setOrderSuccess(false)
             navigate("/profile", {replace:"true"})
-          }, 4000);
+          }, 3000);
         }
       })
       
@@ -115,14 +121,14 @@ const handlePlaceOrder = (e) => {
                 type="text"
                 value={name[0].toUpperCase()}
                 placeholder="First name*"
-                className="border-[1px] border-secondaryLight w-full mr-2 p-2 focus:outline-none"
+                className="border-[1px] border-secondaryLight w-full mr-2 p-2 focus:outline-none bg-gray-300"
                 readOnly
               />
               <input
                 type="text"
                 value={name[1].toUpperCase()}
                 placeholder="Last name*"
-                className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none bg-gray-300"
                 readOnly
               />
             </div>
@@ -169,7 +175,7 @@ const handlePlaceOrder = (e) => {
                 type="email"
                 value={email}
                 placeholder="Email address*"
-                className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none"
+                className="border-[1px] border-secondaryLight w-full  p-2 focus:outline-none bg-gray-300"
                 readOnly
               />
             </div>
@@ -247,8 +253,6 @@ const handlePlaceOrder = (e) => {
           {agree? "Confirm order" : "Agree first" }{orderSuccess && <img src={bag} alt="bag" className="h-[35px] w-[35px]"/>}
         </button> 
           </div>
-
-          
 
         </div>
       </form>

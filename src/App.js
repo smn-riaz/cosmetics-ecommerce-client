@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import ProductPage from "./pages/ProductPage/ProductPage";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import ProductTypePage from "./pages/ProductTypePage/ProductTypePage";
@@ -51,7 +52,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
 
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-          
+          {/* <Route path="*" element={<NotFoundPage /> } /> */}
         </Routes>
       </BrowserRouter>
     </ProductsContext.Provider>
