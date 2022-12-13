@@ -76,6 +76,7 @@ const ProfilePage = () => {
                   <p>Shipping Address: <span className="font-medium">{ord.shippingAddress.houseNum},{ord.shippingAddress.city}</span></p>
                   <p>Phone: <span className="font-medium">{ord.shippingPhone}</span></p>
                   <p>Total Payment: <span className="font-medium">${ord.totalPayment}</span></p>
+                  <p><span className="px-1 rounded-sm bg-gray-500 text-white">Delivery</span> : <span className="font-medium">{ord.deliveryStatus}</span></p>
                   <div className="py-2">
                     <h3 className="text-center font-medium text-secondary">Products</h3>
                     {

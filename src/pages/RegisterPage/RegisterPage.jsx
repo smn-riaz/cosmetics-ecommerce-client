@@ -7,9 +7,12 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import {GoPrimitiveDot} from 'react-icons/go'
 import { useEffect } from "react";
+import {serverLink} from "../../constants/index";
 
 
 const RegisterPage = () => {
+  
+  
   const [showPassword, setShowPassword] = useState(false);
   const {setUser} = useContext(ProductsContext)
   const navigate = useNavigate()
@@ -46,7 +49,7 @@ const RegisterPage = () => {
     const password = passwordRef.current.value
 
   if(phoneNo.length===13){
-    fetch("http://localhost:5000/customer/isEmailAvailable", {
+    fetch(`${serverLink}/customer/isEmailAvailable`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -62,7 +65,7 @@ const RegisterPage = () => {
             navigate("/login", { replace: true })
           }, 7000);
         }  else {
-          fetch("http://localhost:5000/customer/addCustomer", {
+          fetch(`${serverLink}/customer/addCustomer`, {
             method: "POST",
             headers: {
               "content-type": "application/json",
@@ -132,7 +135,7 @@ const RegisterPage = () => {
                 <span className="text-md font-semibold font-nunito">E-mail address :</span>
                 <input
                 ref={emailRef}
-                  type="text"
+                  type="email"
                   name=""
                   id="email"
                   className="w-full p-2 border-[1px] border-secondaryLight focus:outline-none"

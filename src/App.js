@@ -6,8 +6,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DicountText from "./components/DicountText";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
+import { serverLink } from "./constants";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
+import BlogPage from "./pages/BlogPage/BlogPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import ContactPage from "./pages/ContactPage/ContactPage";
+import AllCustomerPage from "./pages/Dashboard/AllCustomerPage";
+import AllProductPage from "./pages/Dashboard/AllProductPage";
+import DashboardPage from "./pages/Dashboard/DashboardPage";
+import DeliveryPage from "./pages/DeliveryPage/DeliveryPage";
+import FaqPage from "./pages/FaqPage/FaqPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -25,7 +34,7 @@ function App() {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    fetch("http://localhost:5000/product/allProduct")
+    fetch(`${serverLink}/product/allProduct`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);
@@ -50,8 +59,18 @@ function App() {
           <Route path="/checkout" element={<PrivateRoute><CheckoutPage /></PrivateRoute>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/aboutus" element={<AboutUsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/delivery" element={<DeliveryPage />} />
+          <Route path="/faq" element={<FaqPage />} />
+          <Route path="/contact" element={<ContactPage />} />
 
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
+          <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+          <Route path="/dashboard/allCustomer" element={<AllCustomerPage />} />
+          <Route path="/dashboard/allProduct" element={<AllProductPage />} />
+          <Route path="/dashboard/allOrder" element={<AllOrderPage/>} />
+          <Route path="/dashboard/addProduct" element={<AddProductPage />} />
           {/* <Route path="*" element={<NotFoundPage /> } /> */}
         </Routes>
       </BrowserRouter>

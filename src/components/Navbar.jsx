@@ -9,21 +9,57 @@ import { ProductsContext } from "../App";
 import { cartActions } from "../store/cart-slice";
 
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [toggleMenu, setToggleMenu] = useState(false);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
-  const cartQuantity = items.reduce((n, {quantity}) => n + quantity, 0)
+  const cartQuantity = items.reduce((n, { quantity }) => n + quantity, 0);
 
-  const {user, setUser} = useContext(ProductsContext)
-  const {email} = user
-  
+  const { user, setUser } = useContext(ProductsContext);
+  const { email } = user;
+
   const handleSignout = () => {
-    setUser({})
-    dispatch(cartActions.setupCart([]))
-    navigate("/login", {replace: true})
-  }
+    setUser({});
+    dispatch(cartActions.setupCart([]));
+    navigate("/login", { replace: true });
+  };
 
+  const links = [
+   {
+    name:"About Us",
+    link:"/aboutus"
+   },
+   {
+    name:"Blog",
+    link:"/blog"
+   },
+   {
+    name:"Delivery",
+    link:"/delivery"
+   },
+   {
+    name:"FAQ",
+    link:"/faq"
+   },
+  ]
+  const productTypeLink = [
+    {
+      name:"Concealer",
+      link:"/product/prefectconcealer"
+    },
+    {
+      name:"Bodycare",
+      link:"/product/bodycare"
+    },
+    {
+      name:"Makeup",
+      link:"/product/mackupequipment"
+    },
+    {
+      name:"Soap",
+      link:"/product/awesomesoap"
+    },
+  ]
 
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
@@ -53,24 +89,15 @@ const Navbar = () => {
               />
             </div>
             <ul className="absolute group-hover:z-30 bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                About Us
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                Services
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                Delivery
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                Pricing Plans
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                FAQ
-              </li>
-              <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                Team
-              </li>
+              {
+                links.map(link => <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
+                  <Link
+                    to={link.link}
+                  >
+                    {link.name}
+                  </Link>
+                </li>)
+              }
             </ul>
           </li>
 
@@ -83,34 +110,19 @@ const Navbar = () => {
               />
             </div>
             <ul className="absolute flex flex-col bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 group-hover:z-30 duration-500">
-              <Link
-                to="/product/prefectconcealer"
+             {productTypeLink.map(link=> <Link
+                to={link.link}
                 className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
               >
-                Concealer
-              </Link>
-              <Link
-                to="/product/bodycare"
-                className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
-              >
-                Body Care
-              </Link>
-              <Link
-                to="/product/mackupequipment"
-                className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
-              >
-                Makeup
-              </Link>
-              <Link
-                to="/product/awesomesoap"
-                className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
-              >
-                Soap
-              </Link>
+                {link.name}
+              </Link>)}
             </ul>
           </li>
 
-          <Link to="/checkout" className="flex justify-center uppercase font-medium items-start gap-1 xl:text-3xl">
+          <Link
+            to="/contact"
+            className="flex justify-center uppercase font-medium items-start gap-1 xl:text-3xl"
+          >
             Contacts
           </Link>
         </ul>
@@ -128,24 +140,37 @@ const Navbar = () => {
               )}
             </Link>
           </li>
-          {
-            user.email ? <Link to="/profile"><button className="flex justify-center items-center uppercase font-semibold bg-secondaryLight p-1 rounded-xl ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300" title="Profile">
-            {user.name[0].length<user.name[1].length ? user.name[0] : user.name[1]}
-          </button></Link> : <li className="flex justify-center items-center">
-          <BsSearch size={25} />
-          </li>
-          }
-          {
-            user.email ? <button className="flex justify-center items-center rounded-2xl p-1 space-x-1" onClick={handleSignout}>
-            
-            <CgProfile size={25} /> <span className="font-nunito font-semibold">Logout</span>
-      
-          </button> : <li className="flex justify-center items-center">
-            <Link to="/login">
-              <CgProfile size={25} />
+          {user.email ? (
+            <Link to="/profile">
+              <button
+                className="flex justify-center items-center uppercase font-semibold bg-secondaryLight p-1 rounded-xl ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300"
+                title="Profile"
+              >
+                {user.name[0].length < user.name[1].length
+                  ? user.name[0]
+                  : user.name[1]}
+              </button>
             </Link>
-          </li>
-          }
+          ) : (
+            <li className="flex justify-center items-center">
+              <BsSearch size={25} />
+            </li>
+          )}
+          {user.email ? (
+            <button
+              className="flex justify-center items-center rounded-2xl p-1 space-x-1"
+              onClick={handleSignout}
+            >
+              <CgProfile size={25} />{" "}
+              <span className="font-nunito font-semibold">Logout</span>
+            </button>
+          ) : (
+            <li className="flex justify-center items-center">
+              <Link to="/login">
+                <CgProfile size={25} />
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -182,24 +207,12 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 cursor-pointer bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    About Us
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Services
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Delivery
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Pricing Plans
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    FAQ
-                  </li>
-                  <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                    Team
-                  </li>
+                  {links.map(link => <Link
+                    to={link.link}
+                    className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2"
+                  >
+                   {link.name}
+                  </Link>)}
                 </ul>
               </li>
 
@@ -212,26 +225,14 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  <Link to="/product/prefectconcealer" onClick={() => setToggleMenu(false)}>
+                  {productTypeLink.map(link => <Link
+                    to={link.link}
+                    onClick={() => setToggleMenu(false)}
+                  >
                     <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                      Concealer
+                      {link.name}
                     </li>
-                  </Link>
-                  <Link to="/product/bodycare" onClick={() => setToggleMenu(false)}>
-                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                      Body Care
-                    </li>
-                  </Link>
-                  <Link to="/product/mackupequipment" onClick={() => setToggleMenu(false)}>
-                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                      Makeup
-                    </li>
-                  </Link>
-                  <Link to="/product/awesomesoap" onClick={() => setToggleMenu(false)}>
-                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                      Soap
-                    </li>
-                  </Link>
+                  </Link>)}
                 </ul>
               </li>
 
@@ -240,28 +241,28 @@ const Navbar = () => {
               </Link>
 
               <li className="flex-col space-y-4 justify-between items-center">
-              <Link to="/cart" onClick={() => setToggleMenu(false)}>
-                <li className="flex justify-center items-center px-2 my-6">
-                  <BsCartCheck size={25} />
-                  {items.reduce((n, {quantity}) => n + quantity, 0) > 0 && (
-                    <sup className="text-lg font-bold font-raleway">
-                      {items.reduce((n, {quantity}) => n + quantity, 0)}
-                    </sup>
-                  )}
-                </li>
-              </Link>
+                <Link to="/cart" onClick={() => setToggleMenu(false)}>
+                  <li className="flex justify-center items-center px-2 my-6">
+                    <BsCartCheck size={25} />
+                    {items.reduce((n, { quantity }) => n + quantity, 0) > 0 && (
+                      <sup className="text-lg font-bold font-raleway">
+                        {items.reduce((n, { quantity }) => n + quantity, 0)}
+                      </sup>
+                    )}
+                  </li>
+                </Link>
 
-              <Link to="/" onClick={() => setToggleMenu(false)}>
-                <li className="flex justify-center items-center px-2 my-6">
-                  <BsSearch size={25} />
-                </li>
-              </Link>
+                <Link to="/" onClick={() => setToggleMenu(false)}>
+                  <li className="flex justify-center items-center px-2 my-6">
+                    <BsSearch size={25} />
+                  </li>
+                </Link>
 
-              <Link to="/profile" onClick={() => setToggleMenu(false)}>
-                <li className="flex justify-center items-center px-2 my-6">
-                  <CgProfile size={25} />
-                </li>
-              </Link>
+                <Link to="/profile" onClick={() => setToggleMenu(false)}>
+                  <li className="flex justify-center items-center px-2 my-6">
+                    <CgProfile size={25} />
+                  </li>
+                </Link>
               </li>
             </ul>
           </div>

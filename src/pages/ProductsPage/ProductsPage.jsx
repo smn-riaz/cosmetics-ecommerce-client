@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link, useLocation, useNavigation } from "react-router-dom";
 import { ProductsContext } from "../../App";
+import { serverLink } from "../../constants";
 
 import styles from "../../styles/styles";
 
@@ -32,7 +33,7 @@ const ProductsPage = () => {
     }
   },[productType])
   useEffect(() => {
-    fetch("http://localhost:5000/product/allProduct")
+    fetch(`${serverLink}/product/allProduct`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.data);

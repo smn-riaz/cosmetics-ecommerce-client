@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
 import Button from "../../components/Button";
+import { serverLink } from "../../constants";
 import { cartActions } from "../../store/cart-slice";
 import { userActions } from "../../store/user-slice";
 import styles from "../../styles/styles";
@@ -36,7 +37,7 @@ const LoginPage = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
 
-    fetch("http://localhost:5000/customer/isEmailAvailable", {
+    fetch(`${serverLink}/customer/isEmailAvailable`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -46,7 +47,7 @@ const LoginPage = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.result > 0) {
-          fetch("http://localhost:5000/customer/signin", {
+          fetch(`${serverLink}/customer/signin`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

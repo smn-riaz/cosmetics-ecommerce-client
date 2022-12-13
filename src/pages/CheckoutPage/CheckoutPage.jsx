@@ -13,6 +13,7 @@ import { current } from "@reduxjs/toolkit";
 import CartItems from "../../components/CartItems";
 import bag from '../../assets/bag.gif'
 import { cartActions } from "../../store/cart-slice";
+import { serverLink } from "../../constants";
 
 
 const CheckoutPage = () => {
@@ -66,7 +67,7 @@ const handlePlaceOrder = (e) => {
   }
 
     if(allValue) {
-      fetch("http://localhost:5000/order/addOrder", {
+      fetch(`${serverLink}/order/addOrder`, {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -78,7 +79,7 @@ const handlePlaceOrder = (e) => {
           // console.log(data)
         })
 
-      fetch("http://localhost:5000/customer/addOrder", {
+      fetch(`${serverLink}/customer/addOrder`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -250,7 +251,7 @@ const handlePlaceOrder = (e) => {
 
           <div>
             <button className="cursor-pointer px-4 w-fit py-2 border-[0.5px] flex items-center hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6" type={agree?"submit":""}>
-          {agree? "Confirm order" : "Agree first" }{orderSuccess && <img src={bag} alt="bag" className="h-[35px] w-[35px]"/>}
+          {!orderSuccess && <span>{agree? "Confirm order" : "Agree first" }</span>}{orderSuccess && <span><img src={bag} alt="bag" className="h-[35px] w-[35px]"/></span>}
         </button> 
           </div>
 

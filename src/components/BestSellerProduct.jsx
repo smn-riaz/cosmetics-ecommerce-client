@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProductsContext } from "../App";
 import { useEffect } from "react";
+import { serverLink } from "../constants";
 
 const BestSellerProduct = () => {
   const [products, setProducts] = useState([]) 
@@ -31,7 +32,7 @@ const BestSellerProduct = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/product/allProduct")
+    fetch(`${serverLink}/product/allProduct`)
       .then((res) => res.json())
       .then((data) => {
         setProjectData(data.data.slice(0, 12))

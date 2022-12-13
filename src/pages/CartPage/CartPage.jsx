@@ -10,6 +10,7 @@ import Button from "../../components/Button";
 import { useContext } from "react";
 import { ProductsContext } from "../../App";
 import { useEffect } from "react";
+import { serverLink } from "../../constants";
 
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.items);
@@ -56,7 +57,7 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/customer/addCart", {
+    fetch(`${serverLink}/customer/addCart`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
