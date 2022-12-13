@@ -5,6 +5,7 @@ import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlinePending } from "react-icons/md";
 import DashboardLeft from "../../components/DashboardLeft";
+import Loader from "../../components/Loader";
 import { serverLink } from "../../constants";
 
 const AllCustomerPage = () => {
@@ -18,10 +19,12 @@ const AllCustomerPage = () => {
         setAdmins(res.data.data.filter((cus) => cus.role === "admin"));
       },
       (error) => {
-        console.log(error);
+        
       }
     );
   }, []);
+
+  console.log(customers)
 
   return (
     <main>
@@ -29,7 +32,9 @@ const AllCustomerPage = () => {
         <div>
           <DashboardLeft />
         </div>
-        <div className="flex flex-col space-y-14">
+        {
+          customers.length ?
+          <div className="flex flex-col space-y-14">
             <div>
                     <h3 className="text-center font-raleway text-3xl font-medium text-secondary underline underline-offset-8 pb-4">Admins</h3>
                 <table className=" ">
@@ -120,6 +125,11 @@ const AllCustomerPage = () => {
           </table>
             </div>
         </div>
+        :
+        <div>
+          <Loader />
+        </div>
+        }
       </section>
     </main>
   );

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MdOutlinePending } from 'react-icons/md';
 import DashboardLeft from '../../components/DashboardLeft';
+import Loader from '../../components/Loader';
 import { serverLink } from '../../constants';
 
 const AllProductPage = () => {
@@ -27,7 +28,10 @@ const AllProductPage = () => {
       <div>
         <DashboardLeft />
       </div>
-      <div className="flex flex-col space-y-14">
+
+      {
+        products.length ?
+        <div className="flex flex-col space-y-14">
           <div>
           <h3 className="text-center font-raleway text-3xl font-medium text-secondary underline underline-offset-8 pb-4">Products Collection</h3>
         <table className=" ">
@@ -84,6 +88,11 @@ const AllProductPage = () => {
         </table>
           </div>
       </div>
+      :
+      <div>
+        <Loader />
+      </div>
+      }
     </section>
   </main>
   )

@@ -12,7 +12,9 @@ import BlogPage from "./pages/BlogPage/BlogPage";
 import CartPage from "./pages/CartPage/CartPage";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import AddProductPage from "./pages/Dashboard/AddProductPage";
 import AllCustomerPage from "./pages/Dashboard/AllCustomerPage";
+import AllOrderPage from "./pages/Dashboard/AllOrderPage";
 import AllProductPage from "./pages/Dashboard/AllProductPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import DeliveryPage from "./pages/DeliveryPage/DeliveryPage";
@@ -66,10 +68,10 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
 
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-          <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/dashboard/allCustomer" element={<AllCustomerPage />} />
           <Route path="/dashboard/allProduct" element={<AllProductPage />} />
-          <Route path="/dashboard/allOrder" element={<AllOrderPage/>} />
+          <Route path="/dashboard/allOrder" element={<AllOrderPage />} />
           <Route path="/dashboard/addProduct" element={<AddProductPage />} />
           {/* <Route path="*" element={<NotFoundPage /> } /> */}
         </Routes>

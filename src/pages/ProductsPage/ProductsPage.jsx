@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { Link, useLocation, useNavigation } from "react-router-dom";
 import { ProductsContext } from "../../App";
+import Loader from "../../components/Loader";
 import { serverLink } from "../../constants";
 
 import styles from "../../styles/styles";
@@ -49,7 +50,9 @@ const ProductsPage = () => {
         </h4>
       </div>
 
-      <div
+      {
+        productsData.length?
+        <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
         {productsData.map((product) => (
@@ -89,6 +92,11 @@ const ProductsPage = () => {
           </Link>
         ))}
       </div>
+      :
+      <div>
+        <Loader />
+      </div>
+      }
     </section>
   );
 };
