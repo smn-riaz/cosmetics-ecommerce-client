@@ -121,7 +121,7 @@ const handleSubmit = () => {
               <label
                 htmlFor="name"
               >
-                <span className="text-md font-semibold font-nunito">Image :</span>
+                <span className="text-md font-semibold font-nunito">Image <small>(1000px * 1000px) recommended</small>: </span>
                 <input
                   type="file"
                   // ref={firstNameRef}
