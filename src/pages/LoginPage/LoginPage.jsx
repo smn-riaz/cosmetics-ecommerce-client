@@ -11,6 +11,7 @@ import styles from "../../styles/styles";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false)
   const location = useLocation()
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/profile'
@@ -46,6 +47,7 @@ const LoginPage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        // console.log(data)
         if (data.result > 0) {
           fetch(`${serverLink}/customer/signin`, {
             method: "POST",
@@ -56,11 +58,20 @@ const LoginPage = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-              setUser(data.result)
-              dispatch(userActions.loginUser(data.result))
+              console.log(data);
+              if(data.result){
+                setUser(data.result)
+                dispatch(userActions.loginUser(data.result))
               dispatch(cartActions.setupCart(data.result.cart))
               // localStorage.setItem('user', JSON.stringify(data.result));
               navigate(from, {replace: true})
+              } else if(data.error) {
+                setWrongPassword(true);
+          setTimeout(() => {
+            setWrongPassword(false);
+           
+          }, 10000);
+              }
             });
 
 
@@ -85,6 +96,11 @@ const LoginPage = () => {
           <p className="text-red-700 text-center font-nunito font-semibold">
             This Email is not found.
             <br /> Please, Register !
+          </p>
+        )}
+        {wrongPassword && (
+          <p className="text-red-700 text-center font-nunito font-semibold">
+            The password that you've <br /> entered is incorrect.
           </p>
         )}
         <h2 className="text-center text-3xl py-2 font-raleway">Sign in</h2>

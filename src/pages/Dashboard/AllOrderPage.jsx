@@ -6,8 +6,10 @@ import { AiOutlineDelete } from 'react-icons/ai';
 import DashboardLeft from '../../components/DashboardLeft';
 import { serverLink } from '../../constants';
 import Loader from "../../components/Loader";
+import { useNavigate } from 'react-router-dom';
 
 const AllOrderPage = () => {
+  const navigate = useNavigate()
   const [orders, setOrders] = useState([])
   const deliveryStatuses = [
     "Pending", "Done"
@@ -26,6 +28,22 @@ const AllOrderPage = () => {
       }
     );
   }, []);
+
+  const handleDeleteOrder = (id) => {
+    fetch(`${serverLink}/order/deleteOrder`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.data){
+          navigate("/dashboard")
+        }
+      })
+  }
  
   return (
     <main>
@@ -55,7 +73,7 @@ const AllOrderPage = () => {
           </thead>
           <tbody className=" ">
             {orders.map((order) => {
-              const { orderId, orderDate, email, phone, shippingAddress, orderProducts, deliveryStatus, totalPayment, shippingPhone } = order;
+              const { orderId, orderDate, email,_id, phone, shippingAddress, orderProducts, deliveryStatus, totalPayment, shippingPhone } = order;
               return (
                 <tr className="font-nunito my-2 hover:bg-secondaryLight font-medium duration-500 text-md">
                   <td>
@@ -96,7 +114,7 @@ const AllOrderPage = () => {
                     </div>
                   </td>
                   <td>
-                    <div className="my-3 mx-6 text-xl cursor-pointer"><h3><AiOutlineDelete /></h3></div>
+                    <div className="my-3 mx-6 text-xl cursor-pointer"><h3 onClick={() => handleDeleteOrder(_id)}><AiOutlineDelete /></h3></div>
                   </td>
                 </tr>
               );

@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { MdOutlinePending } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 import DashboardLeft from '../../components/DashboardLeft';
 import Loader from '../../components/Loader';
 import { serverLink } from '../../constants';
 
 const AllProductPage = () => {
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios.get(`${serverLink}/product/allProduct`)
@@ -21,6 +23,23 @@ const AllProductPage = () => {
       }
     );
   }, []);
+
+
+  const handleDeleteProduct = (id) => {
+    fetch(`${serverLink}/product/deleteProduct`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.data){
+          navigate("/dashboard")
+        }
+      })
+  }
   
   return (
     <main>
@@ -79,7 +98,7 @@ const AllProductPage = () => {
                     <div className="my-3 mx-6 text-xl cursor-pointer"><h3><MdOutlinePending /></h3></div>
                   </td>
                   <td>
-                    <div className="my-3 mx-6 text-xl cursor-pointer"><h3><AiOutlineDelete /></h3></div>
+                    <div className="my-3 mx-6 text-xl cursor-pointer"><h3 onClick={()=> handleDeleteProduct(_id)}><AiOutlineDelete /></h3></div>
                   </td>
                 </tr>
               );

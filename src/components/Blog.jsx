@@ -1,5 +1,7 @@
 import React from "react";
-import { blog1, blog2, blog3 } from "../assets";
+import blog1 from '../assets/blog1.jpg'
+import blog2 from '../assets/blog2.jpg'
+import blog3 from '../assets/blog3.jpg'
 import styles from "../styles/styles";
 import Button from "./Button";
 
