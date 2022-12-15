@@ -5,7 +5,7 @@ import Button from "./Button";
 
 const Features = () => {
   return (
-    <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
+    <section className={`${styles.paddingX} ${styles.paddingY}`}>
       <div className={`flex flex-col sm:flex-row justify-center items-center space-x-6 space-y-6`}>
         <div className="flex justify-center items-center basis-1/2 xl:basis-1/3">
           <div className="relative">
@@ -18,7 +18,7 @@ const Features = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-end  items-center py-10 basis-1/2 xl:basis-1/3">
+        <div className="flex flex-row justify-end  items-center basis-1/2 xl:basis-1/3">
           <div className="space-y-4">
             <h3 className={`${styles.headLine1}`}>Features</h3>
             <h1 className={`${styles.headLine2}`}>

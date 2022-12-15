@@ -2,7 +2,7 @@ import React from 'react'
 
 const CartItems = ({cart}) => {
   return (
-    <div className="flex justify-between items-center my-2 min-w-[300px] w-fit bg-secondaryLight space-x-2 rounded-lg border-[1px] border-secondary">
+    <div className="flex justify-between items-center my-2 w-fit sm:min-w-[300px] w-fit bg-secondaryLight space-x-2 rounded-lg border-[1px] border-secondary">
                 <div className="flex justify-start items-center">
                   <div>
                     <img src={cart.image} alt="" className="h-[50px] w-[50px] rounded-l-lg"/>

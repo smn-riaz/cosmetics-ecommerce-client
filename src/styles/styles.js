@@ -7,7 +7,7 @@
     flexStart: "flex justify-center items-start",
   
     paddingX: "sm:px-10 px-6",
-    paddingY: "sm:py-10 py-6",
+    paddingY: "sm:py-8 py-6",
     brandDiv:"opacity-80 hover:opacity-100 m-4",
     socialIcon:"rounded-full border-[0.5px] border-[#444444] p-[6px] m-1 cursor-pointer hover:bg-tertiary duration-300"
 }

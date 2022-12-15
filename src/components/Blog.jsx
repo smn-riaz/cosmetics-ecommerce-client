@@ -32,7 +32,7 @@ const Blog = () => {
   return (
     <section className={`${styles.paddingX} ${styles.paddingY} w-full`}>
 
-      <div className="grid md:grid-cols-3 ss:grid-cols-2 grid-cols-1 justify-items-center  md:px-8">
+      <div className="grid sm:grid-cols-3 ss:grid-cols-2 grid-cols-1 justify-items-center  md:px-8">
         {blogs.map((blog) => (
           <div className="p-4 border-gray-200 hover:border-black duration-300 border-[1.5px] space-y-4 m-2">
             <div className="relative overflow-hidden">

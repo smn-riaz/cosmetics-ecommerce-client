@@ -1,16 +1,20 @@
 import axios from "axios";
 import React from "react";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdOutlinePending } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { ProductsContext } from "../../App";
 import DashboardLeft from "../../components/DashboardLeft";
 import Loader from "../../components/Loader";
 import { serverLink } from "../../constants";
+import NotFoundPage from "../NotFoundPage/NotFoundPage";
 
 const AllCustomerPage = () => {
   const navigate = useNavigate()
+  const {user} = useContext(ProductsContext)
   const [customers, setCustomers] = useState([]);
   const [admins, setAdmins] = useState([]);
   useEffect(() => {
@@ -44,13 +48,15 @@ const AllCustomerPage = () => {
 
   return (
     <main>
-      <section className="flex justify-start space-x-10">
+      {
+        user.role === 'admin'?
+        <section className="flex justify-start md:space-x-10">
         <div>
           <DashboardLeft />
         </div>
         {
           (customers.length || admins.length) ?
-          <div className="flex flex-col space-y-14">
+          <div className="flex flex-col space-y-14 w-screen overflow-x-scroll sm:w-auto">
             {
               admins.length && <div>
               <h3 className="text-center font-raleway text-3xl font-medium text-secondary underline underline-offset-8 pb-4">Admins</h3>
@@ -150,6 +156,9 @@ const AllCustomerPage = () => {
         </div>
         }
       </section>
+      :
+      <NotFoundPage />
+      }
     </main>
   );
 };

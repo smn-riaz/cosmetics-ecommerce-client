@@ -23,7 +23,7 @@ const OurProducts = () => {
     },
   ];
   return (
-    <section className={`${styles.paddingY} grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}>
+    <section className={`${styles.paddingY} grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 justify-items-stretch ${styles.paddingX}`}>
       {ourproducts.map((ourproduct) => (
         <div className="w-[270px] ss:w-[300px] h-[270px] ss:h-[300px] xl:h-[600px] xl:w-[600px] relative m-6">
           <div className="w-[95%] h-[95%] absolute top-0 left-0 border-[1px] border-secondary z-10"></div>

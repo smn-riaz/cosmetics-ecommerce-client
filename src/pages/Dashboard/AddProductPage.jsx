@@ -1,15 +1,16 @@
-import React from 'react'
-import { useRef } from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React, {useState, useRef, useEffect} from 'react'
+import { useContext } from 'react';
 import { prototype } from 'react-modal';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ProductsContext } from '../../App';
 import DashboardLeft from '../../components/DashboardLeft';
 import Loader from '../../components/Loader';
 import { serverLink } from '../../constants';
+import NotFoundPage from '../NotFoundPage/NotFoundPage';
 
 const AddProductPage = () => {
   const navigate = useNavigate()
+  const {user} = useContext(ProductsContext)
   const productTypes = ["prefectconcealer","bodycare","mackupequipment","awesomesoap"]
   const [productType, setProductType] = useState("prefectconcealer")
   const [productCategory, setProductCategory] = useState("prefectconcealer")
@@ -95,16 +96,18 @@ e.preventDefault()
 
   return (
     <main>
-    <section className="flex justify-start space-x-10">
+    {
+      user.role === "admin"?
+      <section className="flex justify-start space-x-2 md:space-x-10">
       <div>
         <DashboardLeft />
       </div>
 
       
-      <div className='flex justify-center w-full'>
-      <div className="w-[550px] bg-gray-100 p-6">
+      <div className='flex justify-center px-8 overflow-hidden'>
+      <div className="md:w-[550px]  bg-gray-100 md:p-6">
           <form onSubmit={handleSubmit} >
-            <div className="pb-4 flex justify-between space-x-3">
+            <div className="pb-4 flex-col flex md:flex-row justify-between md:space-x-3">
               <label
                 htmlFor="id"
                 className='w-full'
@@ -137,7 +140,7 @@ e.preventDefault()
             </div>
 
 
-            <div className="pb-4 flex justify-between space-x-3 w-full">
+            <div className="pb-4 md:flex justify-between space-x-3 w-full">
               <label
                 htmlFor="price"
                 className='w-full'
@@ -190,7 +193,7 @@ e.preventDefault()
             </div>
 
 
-            <div className="pb-4 flex justify-between space-x-3 w-full">
+            <div className="pb-4 md:flex justify-between space-x-3 w-full">
               <label
                 htmlFor=""
                 className='w-full'
@@ -228,7 +231,7 @@ e.preventDefault()
 
 
 
-            <div className="pb-4 flex justify-between space-x-3">
+            <div className="pb-4 md:flex justify-between space-x-3">
               <label
                 htmlFor="name"
                 className='w-full'
@@ -273,6 +276,9 @@ e.preventDefault()
       </div>
      
     </section>
+    :
+    <NotFoundPage />
+    }
   </main>
   )
 }

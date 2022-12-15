@@ -8,7 +8,7 @@ const Button = ({title, goLink}) => {
   }
   return (
     <section>
-      <button onClick={handleNaivate} className="cursor-pointer px-6 w-fit py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6">
+      <button onClick={handleNaivate} className="cursor-pointer px-2 sm:px-6 w-fit py-1 sm:py-3 border-[0.5px] hover:bg-gray-700 font-raleway bg-white hover:text-primary duration-500 border-black uppercase xl:text-4xl xl:px-8 xl:py-6">
         {title}
       </button>
     </section>

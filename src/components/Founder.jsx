@@ -21,7 +21,7 @@ const Founder = () => {
           </div>
         </div>
 
-        <div className="flex flex-row justify-end  items-center py-10 basis-1/2 xl:basis-1/3">
+        <div className="flex flex-row justify-end  items-center  basis-1/2 xl:basis-1/3">
           <div className="space-y-4">
             <h3 className={`${styles.headLine1}`}>Features</h3>
             <h1 className={`${styles.headLine2}`}>

@@ -131,7 +131,11 @@ const Navbar = () => {
       <div className="sm:flex justify-end items-center flex-1 hidden">
         <ul className="flex justify-center items-center space-x-8 cursor-pointer">
           <li>
-            <Link to="/cart" className="flex justify-center items-center">
+            {
+              user.role === 'admin'?
+              <Link to="/dashboard" className="font-nunito font-semibold border-[1px] border-secondary py-1 px-2 rounded-md">Dashboard</Link>
+              :
+              <Link to="/cart" className="flex justify-center items-center">
               <BsCartCheck size={25} />
               {cartQuantity > 0 && (
                 <sup className="text-lg font-bold font-raleway text-secondary">
@@ -139,6 +143,7 @@ const Navbar = () => {
                 </sup>
               )}
             </Link>
+            }
           </li>
           {user.email ? (
             <Link to="/profile">
@@ -183,7 +188,7 @@ const Navbar = () => {
           />
         )}
         {toggleMenu && (
-          <div className="fixed top-0 right-0 overflow-y-hidden w-[100%] h-[100%] bg-secondaryLight flex-col flex justify-start items-center transition duration-700 z-[100] py-10">
+          <div className="fixed top-0 right-0 overflow-y-hidden w-[100%] h-[100vh] bg-secondaryLight flex-col flex justify-start items-center transition duration-700 z-[100] py-10">
             <TbArrowsCross
               fontSize={35}
               className="m-2 font-bold"
@@ -206,13 +211,15 @@ const Navbar = () => {
                     size={10}
                   />
                 </div>
-                <ul className="absolute z-50 cursor-pointer bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  {links.map(link => <Link
+                <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
+                  {links.map(link => 
+                    <Link
                     to={link.link}
-                    className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2"
+                    onClick={() => setToggleMenu(false)}
                   >
-                   {link.name}
-                  </Link>)}
+                   <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">{link.name}</li>
+                  </Link>
+                  )}
                 </ul>
               </li>
 
@@ -236,11 +243,11 @@ const Navbar = () => {
                 </ul>
               </li>
 
-              <Link className="flex justify-center items-start font-medium gap-1 p-2">
+              <Link className="flex justify-center items-start font-medium gap-1 p-2" >
                 Contacts
               </Link>
 
-              <li className="flex-col space-y-4 justify-between items-center">
+              <div className="flex-col space-y-4 justify-between items-center">
                 <Link to="/cart" onClick={() => setToggleMenu(false)}>
                   <li className="flex justify-center items-center px-2 my-6">
                     <BsCartCheck size={25} />
@@ -263,7 +270,7 @@ const Navbar = () => {
                     <CgProfile size={25} />
                   </li>
                 </Link>
-              </li>
+              </div>
             </ul>
           </div>
         )}
