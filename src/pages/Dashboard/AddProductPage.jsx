@@ -3,19 +3,24 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { prototype } from 'react-modal';
+import { Navigate, useNavigate } from 'react-router-dom';
 import DashboardLeft from '../../components/DashboardLeft';
 import Loader from '../../components/Loader';
+import { serverLink } from '../../constants';
 
 const AddProductPage = () => {
+  const navigate = useNavigate()
   const productTypes = ["prefectconcealer","bodycare","mackupequipment","awesomesoap"]
   const [productType, setProductType] = useState("prefectconcealer")
   const [productCategory, setProductCategory] = useState("prefectconcealer")
+  const [image, setImage] = useState("")
   const titleRef = useRef()
   const idRef = useRef()
   const priceRef = useRef()
   const instockRef = useRef()
   const tagsRef = useRef()
   const descriptionRef = useRef() 
+  const imageRef = useRef()
  
 
 useEffect(()=> {
@@ -33,12 +38,60 @@ useEffect(()=> {
   }
 },[productType])
 
+const imageStorageKey = "df5c0bc096803d7c7e54f1a1e3895f22"
 
-const handleSubmit = () => {
-  const productData = {
 
+const handleSubmit = (e) => {
+e.preventDefault()
+
+  const img = imageRef.current.files[0]
+  const formData = new FormData()
+  formData.append('image',img)
+  const url =  `https://api.imgbb.com/1/upload?key=${imageStorageKey}`
+  fetch(url, {
+    method:'POST',
+    body: formData
+  })
+  .then(res => res.json())
+  .then(result => {
+    setImage(result.data.url)
+  })
+
+  const tags = tagsRef.current.value.split(" ")
+  const description = descriptionRef.current.value.split("/")
+
+
+  if(image){
+    const productData = {
+      id:idRef.current.value,
+      title: titleRef.current.value,
+      image,
+      price:parseInt(priceRef.current.value),
+      instock:parseInt(instockRef.current.value),
+      tags,
+      producttype:productType,
+      description,
+      category: productCategory
+    }
+
+    fetch(`${serverLink}/product/addProduct`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(productData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.message){
+          alert("Product added successfully")
+          navigate('/dashboard')
+        }
+      })
   }
 }
+
+
 
   return (
     <main>
@@ -53,7 +106,7 @@ const handleSubmit = () => {
           <form onSubmit={handleSubmit} >
             <div className="pb-4 flex justify-between space-x-3">
               <label
-                htmlFor="name"
+                htmlFor="id"
                 className='w-full'
               >
                 <span className="text-md font-semibold font-nunito">Product ID :</span>
@@ -61,13 +114,13 @@ const handleSubmit = () => {
                   type="text"
                   ref={idRef}
                   name=""
-                  id="name"
+                  id="id"
                   className="min-w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
-               
+                required
                 />{" "}
               </label>
               <label
-                htmlFor="name"
+                htmlFor="title"
                 className='w-full'
               >
                 <span className="text-md font-semibold font-nunito">Title :</span>
@@ -75,9 +128,9 @@ const handleSubmit = () => {
                   type="text"
                   ref={titleRef}
                   name=""
-                  id="name"
+                  id="title"
                   className="min-w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
-               
+                required
                 />{" "}
               </label>
              
@@ -86,29 +139,31 @@ const handleSubmit = () => {
 
             <div className="pb-4 flex justify-between space-x-3 w-full">
               <label
-                htmlFor="name"
+                htmlFor="price"
                 className='w-full'
               >
                 <span className="text-md font-semibold font-nunito">Price :</span>
                 <input
-                  type="text"
+                  type="number"
                   ref={priceRef}
+                  min={10}
                   name=""
-                  id="name"
+                  id="price"
                   className="min-w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
-               
+                 required
                 />{" "}
               </label>
               <label
-                htmlFor="name"
+                htmlFor="instock"
                 className='w-full'
               >
                 <span className="text-md font-semibold font-nunito">Instock :</span>
                 <input
-                  type="text"
+                  type="number"
+                  min={1}
                   ref={instockRef}
                   name=""
-                  id="name"
+                  id="instock"
                   className="min-w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
                
                 />{" "}
@@ -119,14 +174,14 @@ const handleSubmit = () => {
             <div className="pb-4 space-x-1 w-full">
               
               <label
-                htmlFor="name"
+                htmlFor="image"
               >
                 <span className="text-md font-semibold font-nunito">Image <small>(1000px * 1000px) recommended</small>: </span>
                 <input
                   type="file"
-                  // ref={firstNameRef}
+                  ref={imageRef}
                   name=""
-                  id="name"
+                  id="image"
                   className="min-w-full p-2 border-[1px] border-secondaryLight focus:outline-none"
                
                 />{" "}
@@ -137,7 +192,7 @@ const handleSubmit = () => {
 
             <div className="pb-4 flex justify-between space-x-3 w-full">
               <label
-                htmlFor="name"
+                htmlFor=""
                 className='w-full'
               >
                 <span className="text-md font-semibold font-nunito">Product Type :</span>
@@ -192,7 +247,7 @@ const handleSubmit = () => {
                 htmlFor="name"
                 className='w-full'
               >
-                <span className="text-md font-semibold font-nunito">Description(2) use space :</span>
+                <span className="text-md font-semibold font-nunito">Description(2) use / :</span>
                 <textarea
                   type="text"
                   ref={descriptionRef}

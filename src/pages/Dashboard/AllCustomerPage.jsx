@@ -60,8 +60,8 @@ const AllCustomerPage = () => {
                   <th>Name</th>
                   <th>Email</th>
                   <th>Phone</th>
-                  <th>Update</th>
-                  <th>Delete</th>
+                  {/* <th>Update</th> */}
+                  {/* <th>Delete</th> */}
                   <th>Role</th>
               </tr>
               </thead>
@@ -79,12 +79,12 @@ const AllCustomerPage = () => {
                       <td>
                       <div className="my-3 mx-4"><h3>{phone}</h3></div>
                       </td>
-                      <td>
+                      {/* <td>
                       <div className="my-3 mx-6 text-xl cursor-pointer"><h3><MdOutlinePending /></h3></div>
-                      </td>
-                      <td>
+                      </td> */}
+                      {/* <td>
                       <div className="my-3 mx-6 text-xl cursor-pointer"><h3><AiOutlineDelete /></h3></div>
-                      </td>
+                      </td> */}
                       <td>
                       <div className="my-3 mx-6 text-lg cursor-pointer"><h3 className="rounded-xl bg-secondary px-1 font-semibold">{role}</h3></div>
                       </td>
@@ -107,7 +107,7 @@ const AllCustomerPage = () => {
                 <th>Phone</th>
                 <th>Cart</th>
                 <th>Order</th>
-                <th>Update</th>
+                {/* <th>Update</th> */}
                 <th>Delete</th>
               </tr>
             </thead>
@@ -131,9 +131,9 @@ const AllCustomerPage = () => {
                     <td>
                       <div className="my-3 mx-4"><button className="bg-secondary w-[30px] h-[30px] font-semibold  text-md rounded-full ">{order.length}</button></div>
                     </td>
-                    <td>
+                    {/* <td>
                       <div className="my-3 mx-6 text-xl cursor-pointer"><h3><MdOutlinePending /></h3></div>
-                    </td>
+                    </td> */}
                     <td>
                       <div className="my-3 mx-6 text-xl cursor-pointer"><button onClick={() => handleDeleteCustomer(_id)}><AiOutlineDelete/></button></div>
                     </td>

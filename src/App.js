@@ -68,11 +68,11 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
 
           <Route path="/profile" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/dashboard/allCustomer" element={<AllCustomerPage />} />
-          <Route path="/dashboard/allProduct" element={<AllProductPage />} />
-          <Route path="/dashboard/allOrder" element={<AllOrderPage />} />
-          <Route path="/dashboard/addProduct" element={<AddProductPage />} />
+          <Route path="/dashboard" element={<PrivateRoute><DashboardPage /></PrivateRoute>} />
+          <Route path="/dashboard/allCustomer" element={<PrivateRoute><AllCustomerPage /></PrivateRoute>} />
+          <Route path="/dashboard/allProduct" element={<PrivateRoute><AllProductPage /></PrivateRoute>} />
+          <Route path="/dashboard/allOrder" element={<PrivateRoute><AllOrderPage /></PrivateRoute>} />
+          <Route path="/dashboard/addProduct" element={<PrivateRoute><AddProductPage /></PrivateRoute>} />
           {/* <Route path="*" element={<NotFoundPage /> } /> */}
         </Routes>
       </BrowserRouter>

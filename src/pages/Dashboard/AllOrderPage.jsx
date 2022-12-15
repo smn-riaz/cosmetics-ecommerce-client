@@ -11,10 +11,8 @@ import { useNavigate } from 'react-router-dom';
 const AllOrderPage = () => {
   const navigate = useNavigate()
   const [orders, setOrders] = useState([])
-  const deliveryStatuses = [
-    "Pending", "Done"
-  ]
-  const [status, setStatus] = useState(false)
+ 
+  const [status, setStatus] = useState("Pending")
 
   useEffect(() => {
     axios.get(`${serverLink}/order/allOrder`)
@@ -44,7 +42,37 @@ const AllOrderPage = () => {
         }
       })
   }
- 
+
+
+  const handleStatus = (orderId, email) => {
+    if(status === "Done" && orderId){
+      fetch(`${serverLink}/customer/updateOrder`, {
+        method:"POST",
+        headers: {
+          'content-type':'application/json'
+        },
+        body: JSON.stringify({ orderId , email,  deliveryStatus:status})
+      })
+      .then(res => res.json())
+      .then(data => {
+        if(data.data){
+          fetch(`${serverLink}/order/updateOrder`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({ orderId ,  deliveryStatus:status}),
+          })
+            .then((res) => res.json())
+            .then(data => console.log(data.data))
+        }
+      })
+    }
+  }
+  
+
+  
+
   return (
     <main>
     <section className="flex justify-start space-x-10">
@@ -100,16 +128,27 @@ const AllOrderPage = () => {
                   <td>
                     <div className="my-3 mx-4">
                     <div className="size-container col-6">
-              <select className="bg-gray-300 focus:outline-none"
+              {
+                deliveryStatus==="Pending"?
+                <select className="bg-gray-300 focus:outline-none"
                 name="status"
                 id="status"
                 onChange={(e) => setStatus(e.target.value)}
-               
+               onClick={() => handleStatus(orderId, email)}
               >
-                {deliveryStatuses.map((status) => (
-                  <option value={status}>{status}</option>
-                ))}
+                  <option value={deliveryStatus}>{deliveryStatus}</option>
+                  <option value="Done">Done</option>
+
               </select>
+              :
+              <select className="bg-gray-300 focus:outline-none"
+                name="status"
+                id="status"
+              >
+                  <option value={deliveryStatus}>{deliveryStatus}</option>
+
+              </select>
+              }
             </div>
                     </div>
                   </td>

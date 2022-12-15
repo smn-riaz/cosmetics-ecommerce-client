@@ -51,9 +51,7 @@ const LandingPage = () => {
           <NewProducts />
         </section>
 
-       {/* <section>
-          <Testimonials/>
-        </section> */}
+    
 
         <section>
           <Blog />
