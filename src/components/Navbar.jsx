@@ -272,6 +272,7 @@ const Navbar = () => {
                   <Link
                     to="/profile"
                     className="flex justify-center items-center"
+                    onClick={() => setToggleMenu(false)}
                   >
                     <button
                       className=" uppercase font-semibold bg-secondaryLight p-1 rounded-lg ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300"
@@ -294,8 +295,8 @@ const Navbar = () => {
                     className="flex justify-center items-center rounded-2xl p-1 space-x-1"
                     onClick={handleSignout}
                   >
-                    <CgProfile size={25} />{" "}
-                    <span className="font-nunito font-semibold">Logout</span>
+                    <Link to="/" onClick={() => setToggleMenu(false)} className="flex justify-center items-center"><CgProfile size={25} />{" "}
+                    <span className="font-nunito font-semibold">Logout</span></Link>
                   </button>
                 ) : (
                   <Link to="/profile" onClick={() => setToggleMenu(false)}>
