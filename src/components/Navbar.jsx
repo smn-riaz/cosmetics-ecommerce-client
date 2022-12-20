@@ -25,41 +25,41 @@ const Navbar = () => {
   };
 
   const links = [
-   {
-    name:"About Us",
-    link:"/aboutus"
-   },
-   {
-    name:"Blog",
-    link:"/blog"
-   },
-   {
-    name:"Delivery",
-    link:"/delivery"
-   },
-   {
-    name:"FAQ",
-    link:"/faq"
-   },
-  ]
+    {
+      name: "About Us",
+      link: "/aboutus",
+    },
+    {
+      name: "Blog",
+      link: "/blog",
+    },
+    {
+      name: "Delivery",
+      link: "/delivery",
+    },
+    {
+      name: "FAQ",
+      link: "/faq",
+    },
+  ];
   const productTypeLink = [
     {
-      name:"Concealer",
-      link:"/product/prefectconcealer"
+      name: "Concealer",
+      link: "/product/prefectconcealer",
     },
     {
-      name:"Bodycare",
-      link:"/product/bodycare"
+      name: "Bodycare",
+      link: "/product/bodycare",
     },
     {
-      name:"Makeup",
-      link:"/product/mackupequipment"
+      name: "Makeup",
+      link: "/product/mackupequipment",
     },
     {
-      name:"Soap",
-      link:"/product/awesomesoap"
+      name: "Soap",
+      link: "/product/awesomesoap",
     },
-  ]
+  ];
 
   return (
     <nav className="flex justify-between xl:justify-around items-center flex-row p-8 h-12 w-full xl:text-3xl">
@@ -89,15 +89,11 @@ const Navbar = () => {
               />
             </div>
             <ul className="absolute group-hover:z-30 bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-              {
-                links.map(link => <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
-                  <Link
-                    to={link.link}
-                  >
-                    {link.name}
-                  </Link>
-                </li>)
-              }
+              {links.map((link) => (
+                <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2">
+                  <Link to={link.link}>{link.name}</Link>
+                </li>
+              ))}
             </ul>
           </li>
 
@@ -110,12 +106,14 @@ const Navbar = () => {
               />
             </div>
             <ul className="absolute flex flex-col bg-gray-800 w-[170px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 group-hover:z-30 duration-500">
-             {productTypeLink.map(link=> <Link
-                to={link.link}
-                className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
-              >
-                {link.name}
-              </Link>)}
+              {productTypeLink.map((link) => (
+                <Link
+                  to={link.link}
+                  className="text-white hover:text-secondaryLight duration-500 my-3 hover:ml-1 hover:bg-gray-600 p-2"
+                >
+                  {link.name}
+                </Link>
+              ))}
             </ul>
           </li>
 
@@ -131,19 +129,23 @@ const Navbar = () => {
       <div className="sm:flex justify-end items-center flex-1 hidden">
         <ul className="flex justify-center items-center space-x-8 cursor-pointer">
           <li>
-            {
-              user.role === 'admin'?
-              <Link to="/dashboard" className="font-nunito font-semibold border-[1px] border-secondary py-1 px-2 rounded-md">Dashboard</Link>
-              :
+            {user.role === "admin" ? (
+              <Link
+                to="/dashboard"
+                className="font-nunito font-semibold border-[1px] border-secondary py-1 px-2 rounded-md"
+              >
+                Dashboard
+              </Link>
+            ) : (
               <Link to="/cart" className="flex justify-center items-center">
-              <BsCartCheck size={25} />
-              {cartQuantity > 0 && (
-                <sup className="text-lg font-bold font-raleway text-secondary">
-                  {cartQuantity}
-                </sup>
-              )}
-            </Link>
-            }
+                <BsCartCheck size={25} />
+                {cartQuantity > 0 && (
+                  <sup className="text-lg font-bold font-raleway text-secondary">
+                    {cartQuantity}
+                  </sup>
+                )}
+              </Link>
+            )}
           </li>
           {user.email ? (
             <Link to="/profile">
@@ -212,14 +214,13 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  {links.map(link => 
-                    <Link
-                    to={link.link}
-                    onClick={() => setToggleMenu(false)}
-                  >
-                   <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">{link.name}</li>
-                  </Link>
-                  )}
+                  {links.map((link) => (
+                    <Link to={link.link} onClick={() => setToggleMenu(false)}>
+                      <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                        {link.name}
+                      </li>
+                    </Link>
+                  ))}
                 </ul>
               </li>
 
@@ -232,44 +233,77 @@ const Navbar = () => {
                   />
                 </div>
                 <ul className="absolute z-50 bg-gray-800 w-[140px] min-w-max p-6 text-md invisible group-hover:visible opacity-0 group-hover:opacity-100 duration-500">
-                  {productTypeLink.map(link => <Link
-                    to={link.link}
-                    onClick={() => setToggleMenu(false)}
-                  >
-                    <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
-                      {link.name}
-                    </li>
-                  </Link>)}
+                  {productTypeLink.map((link) => (
+                    <Link to={link.link} onClick={() => setToggleMenu(false)}>
+                      <li className="text-white hover:text-secondaryLight duration-500 my-3 hover:bg-gray-600 p-2">
+                        {link.name}
+                      </li>
+                    </Link>
+                  ))}
                 </ul>
               </li>
 
-              <Link className="flex justify-center items-start font-medium gap-1 p-2" >
+              <Link className="flex justify-center items-start font-medium gap-1 p-2">
                 Contacts
               </Link>
 
               <div className="flex-col space-y-4 justify-between items-center">
-                <Link to="/cart" onClick={() => setToggleMenu(false)}>
-                  <li className="flex justify-center items-center px-2 my-6">
-                    <BsCartCheck size={25} />
-                    {items.reduce((n, { quantity }) => n + quantity, 0) > 0 && (
-                      <sup className="text-lg font-bold font-raleway">
-                        {items.reduce((n, { quantity }) => n + quantity, 0)}
-                      </sup>
-                    )}
-                  </li>
-                </Link>
+                {user.role === "admin" ? (
+                  <Link to="/dashboard" className="">
+                    <li className="flex justify-center items-center px-2 my-6 font-nunito font-semibold border-[1px] border-secondary py-1 rounded-md">
+                      Dashboard
+                    </li>
+                  </Link>
+                ) : (
+                  <Link to="/cart" onClick={() => setToggleMenu(false)}>
+                    <li className="flex justify-center items-center px-2 my-6">
+                      <BsCartCheck size={25} />
+                      {items.reduce((n, { quantity }) => n + quantity, 0) >
+                        0 && (
+                        <sup className="text-lg font-bold font-raleway">
+                          {items.reduce((n, { quantity }) => n + quantity, 0)}
+                        </sup>
+                      )}
+                    </li>
+                  </Link>
+                )}
 
-                <Link to="/" onClick={() => setToggleMenu(false)}>
-                  <li className="flex justify-center items-center px-2 my-6">
-                    <BsSearch size={25} />
-                  </li>
-                </Link>
-
-                <Link to="/profile" onClick={() => setToggleMenu(false)}>
-                  <li className="flex justify-center items-center px-2 my-6">
-                    <CgProfile size={25} />
-                  </li>
-                </Link>
+                {user.email ? (
+                  <Link
+                    to="/profile"
+                    className="flex justify-center items-center"
+                  >
+                    <button
+                      className=" uppercase font-semibold bg-secondaryLight p-1 rounded-lg ring-2 ring-secondary shadow-lg shadow-secondary hover:bg-white duration-300"
+                      title="Profile"
+                    >
+                      {user.name[0].length < user.name[1].length
+                        ? user.name[0]
+                        : user.name[1]}
+                    </button>
+                  </Link>
+                ) : (
+                  <Link to="/" onClick={() => setToggleMenu(false)}>
+                    <li className="flex justify-center items-center px-2 my-6">
+                      <BsSearch size={25} />
+                    </li>
+                  </Link>
+                )}
+                {user.email ? (
+                  <button
+                    className="flex justify-center items-center rounded-2xl p-1 space-x-1"
+                    onClick={handleSignout}
+                  >
+                    <CgProfile size={25} />{" "}
+                    <span className="font-nunito font-semibold">Logout</span>
+                  </button>
+                ) : (
+                  <Link to="/profile" onClick={() => setToggleMenu(false)}>
+                    <li className="flex justify-center items-center px-2 my-6">
+                      <CgProfile size={25} />
+                    </li>
+                  </Link>
+                )}
               </div>
             </ul>
           </div>

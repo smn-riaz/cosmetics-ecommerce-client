@@ -145,7 +145,7 @@ const AllProductPage = () => {
                       </td>
                       <td>
                         <div className="my-3 mx-4">
-                          <h3>{price}</h3>
+                          <h3>${price}</h3>
                         </div>
                       </td>
                       <td>

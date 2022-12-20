@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { ProductsContext } from "../App";
 import { useEffect } from "react";
 import { serverLink } from "../constants";
+import Loader from "./Loader";
 
 const BestSellerProduct = () => {
   const [products, setProducts] = useState([]) 
@@ -52,7 +53,10 @@ const BestSellerProduct = () => {
         </h4>
       </div>
 
-      <div
+    
+    {
+      products.length? <div>
+          <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >
         {projectData.map((product) => (
@@ -113,6 +117,13 @@ const BestSellerProduct = () => {
       <div className="flex justify-center items-center py-4">
         <Button title="Explore Category" goLink="/product" />
       </div>
+      </div>
+      :
+      <div>
+        <Loader />
+      </div>
+    }
+
     </section>
   );
 };

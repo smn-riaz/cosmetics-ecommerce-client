@@ -7,6 +7,7 @@ import DicountText from "./components/DicountText";
 import Navbar from "./components/Navbar";
 import PrivateRoute from "./components/PrivateRoute";
 import { serverLink } from "./constants";
+import { data } from "./data";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import BlogPage from "./pages/BlogPage/BlogPage";
 import CartPage from "./pages/CartPage/CartPage";
@@ -32,7 +33,7 @@ import { userActions } from "./store/user-slice";
 export const ProductsContext = createContext();
 
 function App() {
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState(data);
   const [user, setUser] = useState({})
 
   useEffect(() => {
