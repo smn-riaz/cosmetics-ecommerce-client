@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ProductsContext } from "../../App";
-import Button from "../../components/Button";
 import { serverLink } from "../../constants";
 import { cartActions } from "../../store/cart-slice";
 import { userActions } from "../../store/user-slice";
@@ -87,6 +86,7 @@ const LoginPage = () => {
       });
   };
 
+  console.log("Hello")
   return (
     <main
       className={`flex justify-center items-center ${styles.paddingX} ${styles.paddingY}`}

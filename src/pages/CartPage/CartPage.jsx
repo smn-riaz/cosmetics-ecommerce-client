@@ -188,9 +188,9 @@ const CartPage = () => {
 
 
 
-<div className="w-[80%] flex-col justify-center items-center md:hidden">
+<div className="w-[80%] flex-col justify-center items-center md:hidden mx-auto">
 {cartItems.map((cart) => (
-              <div className="flex-col flex xs:flex-row space-x-3 justify-around items-center  bg-secondaryLight duration-500 rounded-xl w-full sm:hidden p-3">
+              <div className="flex-col flex xs:flex-row space-x-3 justify-around items-center  bg-secondaryLight duration-500 rounded-xl w-full sm:hidden p-3 my-4">
                 <div className="flex justify-start items-center">
                   <img
                     src={cart.image}
@@ -257,7 +257,7 @@ const CartPage = () => {
 
 
 
-              <div className="flex justify-start min-w-fit py-8">
+              <div className="flex justify-start min-w-fit py-8 mx-auto">
                 <div className="font-nunito p-0 space-y-8">
                   <div>
                     <h1 className="uppercase text-xl font-raleway font-medium">

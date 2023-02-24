@@ -33,7 +33,7 @@ import { userActions } from "./store/user-slice";
 export const ProductsContext = createContext();
 
 function App() {
-  const [products, setProducts] = useState(data);
+  const [products, setProducts] = useState([]);
   const [user, setUser] = useState({})
 
   useEffect(() => {

@@ -8,9 +8,11 @@ import { ProductsContext } from "../App";
 import { useEffect } from "react";
 import { serverLink } from "../constants";
 import Loader from "./Loader";
+import { data } from "../data";
 
 const BestSellerProduct = () => {
   const [products, setProducts] = useState([]) 
+
   const [projectData, setProjectData] = useState([]);
   const [moreProjects, setMoreProjects] = useState(false);
   const handleMoreProjects = () => {
@@ -55,7 +57,7 @@ const BestSellerProduct = () => {
 
     
     {
-      products.length? <div>
+      products.length>0 ?<div>
           <div
         className={`grid md:grid-cols-3 lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 justify-items-center ${styles.paddingX}`}
       >

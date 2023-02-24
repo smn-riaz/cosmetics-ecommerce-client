@@ -1,20 +1,3 @@
-import {
-  best1,
-  best10,
-  best11,
-  best12,
-  best13,
-  best14,
-  best15,
-  best2,
-  best3,
-  best4,
-  best5,
-  best6,
-  best7,
-  best8,
-  best9,
-} from "./assets";
 
 export const data = [
   {
