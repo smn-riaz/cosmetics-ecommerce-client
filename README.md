@@ -91,7 +91,6 @@ A full-stack e-commerce platform for cosmetics, featuring user-friendly product 
 
 ### Setup
 
-1. Clone the repositories:
+1. Clone the repository:
    ```bash
    git clone https://github.com/smn-riaz/cosmetics-ecommerce-client
-   git clone https://github.com/smn-riaz/cosmetics-ecommerce-server
